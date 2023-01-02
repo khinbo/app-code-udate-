@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "340401308963",
+    "project_id": "my-app-d08a4",
+    "storage_bucket": "my-app-d08a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340401308963:android:81513a3bff3ea74f4af896",
+        "android_client_info": {
+          "package_name": "com.karimapps.Khinbo.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340401308963-kl1dmgc0u8n1kqlc5qc1t229ng9ot0pa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karimapps.Khinbo.app",
+            "certificate_hash": "e9268ec8db3875312304825ad4e111e1fb18fcea"
+          }
+        },
+        {
+          "client_id": "340401308963-0vbvsk51a0pn5amrmntkatd2n1de8dg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBflgInlNZjrNFf2ofjCe9KGLu4funjkuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340401308963-0vbvsk51a0pn5amrmntkatd2n1de8dg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,6 @@
+framework module Pods_Khinbo_KhinboTests {
+  umbrella header "Pods-Khinbo-KhinboTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

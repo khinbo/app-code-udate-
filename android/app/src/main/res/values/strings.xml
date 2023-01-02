@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">khinbo</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="facebook_app_id">731742054848135</string>
+  <string name="facebook_client_token">ef4b2927a879c6a2e6b436c357dce45c</string>
+  <string name="fb_login_protocol_scheme">fb731742054848135</string>
+  <string name="default_notification_channel_id">khinbo</string>
+</resources>
