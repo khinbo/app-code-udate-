@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -45,12 +46,12 @@ export const StyleScreen = ({route, navigation}) => {
     featured,
   } = useSelector(state => state.demand);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      dispatch(getDemandDefaultIndex(item?.id));
-    });
-    return unsubscribe;
-  }, [navigation]);
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     dispatch(getDemandDefaultIndex(item?.id));
+  //   });
+  //   return unsubscribe;
+  // }, [navigation]);
 
   useEffect(() => {
     dispatch(getDemandDefaultIndex(item?.id));

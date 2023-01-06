@@ -1,13 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import moment from 'moment';
-import React, { useRef } from 'react';
-import {View, Text, TouchableOpacity, ActivityIndicator, Animated} from 'react-native';
+import React, {useRef} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  Animated,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import icons from '../../constants/icons';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import {ContentLikeHandler} from '../../store/reducers/player';
 import {Appicon} from '../base/AppIcon';
-
 
 export const VideoDetails = ({
   onDownload,
@@ -19,8 +24,6 @@ export const VideoDetails = ({
   const dispatch = useDispatch();
   const slider = useRef(null);
   const scrollX = useRef(new Animated.Value(0)).current;
-
- 
 
   return (
     <View

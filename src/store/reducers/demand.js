@@ -25,8 +25,7 @@ export const getDemands = createAsyncThunk(
     server.getDemands().then(resp => {
       if (!resp.ok)
         toast.show(resp.data?.message ? resp.data.message : 'network error');
-      else 
-      dispatch(setdemandData(resp.data));
+      else dispatch(setdemandData(resp.data));
       dispatch(setInitialLoading(false));
       dispatch(setRefresh(false));
     });
@@ -41,17 +40,10 @@ export const getDemandDefaultIndex = createAsyncThunk(
     server.getDemandDefaultIndex(payload, 1).then(resp => {
       if (!resp.ok)
         toast.show(resp.data?.message ? resp.data.message : 'network error');
-      else{ 
-        console.log("before loop",resp?.data);
-        for (let i = 0; i < resp.data.length; i++) {
-         console.log("new array",resp[i]);
-          
-        }
-        // let newArray = resp?.data.sort((a, b) =>
-      // b.updated_at.split('/').reverse().join().localeCompare(a.updated_at.split('/').reverse().join()))
-      dispatch(setdemandContents(resp?.data));
-      dispatch(setInitialLoading(false));
-      dispatch(setRefresh(false));
+      else {
+        dispatch(setdemandContents(resp?.data));
+        dispatch(setInitialLoading(false));
+        dispatch(setRefresh(false));
       }
     });
   },
@@ -131,7 +123,7 @@ export const demandSice = createSlice({
       );
     },
     setdemandContents: (state, {payload}) => {
-      state.contents = payload?.contents?.data.reverse();
+      state.contents = payload?.contents?.data;
       state.featured = payload?.featured;
       state.next_page = payload?.contents?.next_page_url
         ? payload?.contents?.current_page + 1

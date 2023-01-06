@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
   View,
   ScrollView,
@@ -7,7 +7,6 @@ import {
   FlatList,
   Image,
   RefreshControl,
-  ActivityIndicator,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Carousel from 'react-native-reanimated-carousel';
@@ -19,15 +18,12 @@ import {
   PaginationItem,
 } from '../../components';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
-import {lang, translate} from '../../I18n';
+import {translate} from '../../I18n';
 import {getHomeData, setRefresh} from '../../store/reducers/home';
 import AuthContext from '../../store/AuthContext';
 import {useSharedValue} from 'react-native-reanimated';
 import localStorage from '../../server/localStorage';
-import {create} from 'apisauce'
-import { baseURL } from '../../server/urls';
-import { setLoading } from '../../store/reducers/player';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const PAGE_WIDTH = SIZES.width;
 export const Home = () => {
   const {user} = useContext(AuthContext);
@@ -42,58 +38,17 @@ export const Home = () => {
     justForYou,
     popular,
   } = useSelector(state => state.home);
-
-   useEffect(() => {
+  useEffect(() => {
     dispatch(getHomeData());
-    _recentlyWatched()
   }, []);
 
   const progressValue = useSharedValue(0);
-  const [watchedArray, setWatchedArray] = useState([])
-  const [justForYouArry, setJustForYouArry] = useState([])
-  const [popularArry, setPopularArry] = useState([])
-  const [mightArry, setMightArry] = useState([])
-  const [loading, setLoading] = useState(false)
 
-  const _recentlyWatched = async () => {
-    const token = await localStorage.getToken();
-    const api = create({baseURL:'https://admin.khinbo.com/api/app',
-    headers: { Authorization:`Bearer ${token}`} })
-    api.get(`/get_home_data`)
-    .then(response => {
-      let newArray = response.data.recently_watched.sort((a, b) =>
-      a.updated_at.split('/').reverse().join().localeCompare(b.updated_at.split('/').reverse().join())); 
-      setWatchedArray(newArray)
-      let justArray = response.data.justForYou.sort((a, b) =>
-      a.updated_at.split('/').reverse().join().localeCompare(b.updated_at.split('/').reverse().join()));
-      setJustForYouArry(justArray)
-      let newPopular = response.data.popular.sort((a, b) =>
-      a.updated_at.split('/').reverse().join().localeCompare(b.updated_at.split('/').reverse().join()));
-      setPopularArry(newPopular)
-      let newMight = response.data.might_interested_content.sort((a, b) =>
-      a.updated_at.split('/').reverse().join().localeCompare(b.updated_at.split('/').reverse().join()));
-      setMightArry(newMight)
-      // console.log("Recently Watched", response.data);
-      setLoading(false)
-
-    })
-  .then(console.log)
-  }
-
-
-
-
-  // const FullScreen = () => {
-    // setFullScreen(!fullScreen)
-    // !isFullScreen
-  // }
-    // https://admin.khinbo.com/api/app/get_home_data
-    return (
+  return (
     <>
       <AppHeader title={translate('home')} />
       <BaseView styles={styles.container} loading={initialLoading}>
-       
-       {loading ? <ActivityIndicator size={'large'} color={COLORS.primary} /> : <ScrollView
+        <ScrollView
           showsVerticalScrollIndicator={false}
           bounces={false}
           contentContainerStyle={{
@@ -175,7 +130,6 @@ export const Home = () => {
               />
             </View>
           ) : null}
-          
           {justForYou.length ? (
             <View style={styles.movieContainer}>
               <AppTitle title={translate('justForYou')} />
@@ -215,7 +169,6 @@ export const Home = () => {
             </View>
           ) : null}
         </ScrollView>
-  }
       </BaseView>
     </>
   );

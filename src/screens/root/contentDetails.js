@@ -51,7 +51,7 @@ export const ContentDetails = ({route, navigation}) => {
 
   return (
     <>
-      <View style={{backgroundColor:COLORS.black}}>
+      <View style={{backgroundColor: COLORS.black}}>
         <AppPlayer
           url={
             content_details?.status === 'complete'
@@ -65,7 +65,7 @@ export const ContentDetails = ({route, navigation}) => {
           video_limit={content_details?.video_limit}
           limit_duration={content_details?.limit_duration}
           id={content_details?.id}
-          title ='home'
+          title="home"
           type={type}
           landscape={'landscape'}
         />
@@ -95,7 +95,11 @@ export const ContentDetails = ({route, navigation}) => {
             />
           )}
           refreshing={loading}
-          onRefresh={() => dispatch(getRecommmendedContents('media'))}
+          onRefresh={() =>
+            dispatch(
+              getRecommmendedContents({type: type, id: content_details?.id}),
+            )
+          }
           renderEmpty={() => <AppNoDataFound />}
           itemHeight={itemHeight + 1}
           isFooter={false}

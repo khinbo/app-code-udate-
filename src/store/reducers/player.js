@@ -29,12 +29,17 @@ export const getRecommmendedContents = createAsyncThunk(
       if (!resp.ok)
         toast.show(resp.data?.message ? resp.data?.message : 'network error');
       else {
-      let newArray = resp?.data.sort((a, b) =>
-      b.updated_at.split('/').reverse().join().localeCompare(a.updated_at.split('/').reverse().join()))
-      dispatch(setContents(newArray));
-      // console.log("Content DAta Is:::::::::: ", newArray);
-      dispatch(setLoading(false));
-    }
+        let newArray = resp?.data.sort((a, b) =>
+          b.updated_at
+            .split('/')
+            .reverse()
+            .join()
+            .localeCompare(a.updated_at.split('/').reverse().join()),
+        );
+        dispatch(setContents(newArray));
+        // console.log("Content DAta Is:::::::::: ", newArray);
+        dispatch(setLoading(false));
+      }
     });
   },
 );
@@ -44,6 +49,7 @@ export const onContentViewHandler = createAsyncThunk(
   'player/onContentViewHandler',
   async ({item, type}, {dispatch}) => {
     dispatch(setContentDetails(item));
+    dispatch(resetRecomended());
     setTimeout(() => {
       navigation.navigate('genreContentDetails', {type});
     }, 300);
@@ -101,6 +107,9 @@ export const playerSice = createSlice({
     setContents: (state, {payload}) => {
       state.contents = payload;
     },
+    resetRecomended: state => {
+      state.contents = [];
+    },
     setProgress: (state, {payload}) => {
       state.progress = payload;
     },
@@ -122,6 +131,7 @@ export const {
   setContentDetails,
   setLoading,
   setContents,
+  resetRecomended,
   setLiked,
   updateLikes,
   setProgress,

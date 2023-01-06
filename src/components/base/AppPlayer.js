@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // /* eslint-disable react-native/no-inline-styles */
 // import React, {useContext, useEffect, useState} from 'react';
 // import {View, TouchableOpacity, Text} from 'react-native';
@@ -113,7 +114,7 @@
 //           }}>
 //           {artist}
 //         </Text>
-        
+
 //         <TouchableOpacity
 //         style={{alignSelf: 'flex-end'}}
 //         onPress={() => FullScreen()}>
@@ -145,7 +146,7 @@
 //             onPress={() => {FullScreen()}}>
 //             <Appicon icon={icons.full} color={COLORS.white} />
 //           </TouchableOpacity>
-        
+
 //       </View>
 //       </View>
 //     </>
@@ -164,7 +165,7 @@ import icons from '../../constants/icons';
 import {useNavigation} from '@react-navigation/native';
 import server from '../../server';
 import AuthContext from '../../store/AuthContext';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const percentageViewCount = 10;
 
@@ -220,23 +221,22 @@ export const AppPlayer = ({
       }
     }
   };
-  const [orientation, setOrientation] = useState('PORTRAIT')
+  const [orientation, setOrientation] = useState('PORTRAIT');
   const isPortrait = () => {
     const dim = Dimensions.get('window');
     return dim;
-}
-
-useEffect(() => {
-  console.log("new array is",contents);
-  const callback = () => setOrientation(isPortrait() ? 'PORTRAIT' : 'LANDSCAPE');
-
-  Dimensions.addEventListener('change', callback);
-
-  return () => {
-    Dimensions.removeEventListener('change', callback);
   };
-}, []);
 
+  useEffect(() => {
+    const callback = () =>
+      setOrientation(isPortrait() ? 'PORTRAIT' : 'LANDSCAPE');
+
+    Dimensions.addEventListener('change', callback);
+
+    return () => {
+      Dimensions.removeEventListener('change', callback);
+    };
+  }, []);
 
   // const nextVideo =() =>{
   //   for (let i = 0; i < contents.length; i++) {
@@ -255,12 +255,12 @@ useEffect(() => {
   // }
   const rotateScreen = () => {
     if (orientation === 'POTRAIT') {
-      setFullScreen(fullScreen)
+      setFullScreen(fullScreen);
     } else {
-      isPortrait()
-      setFullScreen(!fullScreen)
+      isPortrait();
+      setFullScreen(!fullScreen);
     }
-  }
+  };
 
   return (
     <>
@@ -285,28 +285,35 @@ useEffect(() => {
                 navigation.goBack();
               }
             }}>
-            <Appicon icon={icons.back} color={!fullScreen ? COLORS.white : COLORS.black} />
+            <Appicon
+              icon={icons.back}
+              color={!fullScreen ? COLORS.white : COLORS.black}
+            />
           </TouchableOpacity>
         ) : null}
-        {!fullScreen &&  (
-        <Text
-          numberOfLines={1}
-          style={{
-            ...FONTS.h4,
-            paddingHorizontal: 10,
-            fontSize: 12,
-            color: COLORS.white,
-            flex: 1,
-          }}>
-          {artist}
-        </Text>)}
-        { (
+        {!fullScreen && (
+          <Text
+            numberOfLines={1}
+            style={{
+              ...FONTS.h4,
+              paddingHorizontal: 10,
+              fontSize: 12,
+              color: COLORS.white,
+              flex: 1,
+            }}>
+            {artist}
+          </Text>
+        )}
+        {
           <TouchableOpacity
             style={{alignSelf: 'flex-end'}}
             onPress={() => setFullScreen(!fullScreen)}>
-            <Appicon icon={icons.full} color={fullScreen ?  COLORS.white : COLORS.black } />
+            <Appicon
+              icon={icons.full}
+              color={fullScreen ? COLORS.white : COLORS.black}
+            />
           </TouchableOpacity>
-        ) }
+        }
       </View>
       <VideoPlayer
         ref={videoRef}
@@ -314,16 +321,26 @@ useEffect(() => {
           uri: url,
         }}
         resizeMode={fullScreen ? 'none' : 'contain'}
-        videoWidth={fullScreen ? SIZES.width *1  : SIZES.width * 0.8 }
-        videoHeight={fullScreen ? SIZES.height * 1  : SIZES.width * 0.8}
+        videoWidth={fullScreen ? SIZES.width * 1 : SIZES.width * 0.8}
+        videoHeight={fullScreen ? SIZES.height * 1 : SIZES.width * 0.8}
         thumbnail={{uri: helpers.getImage(poster)}}
         autoplay={shouldPlay}
         onProgress={onPlayCallBack}
-        style={{backgroundColor: COLORS.black, 
-         transform: [{ rotate: fullScreen ?  SIZES.height * 1 > SIZES.width ? '90deg' : '0deg': 
-          SIZES.height * 1 > SIZES.width ? '0deg' : '90deg'}] }}
+        style={{
+          backgroundColor: COLORS.black,
+          transform: [
+            {
+              rotate: fullScreen
+                ? SIZES.height * 1 > SIZES.width
+                  ? '90deg'
+                  : '0deg'
+                : SIZES.height * 1 > SIZES.width
+                ? '0deg'
+                : '90deg',
+            },
+          ],
+        }}
         {...otherProps}
-        
       />
       <View
         style={{
@@ -331,12 +348,11 @@ useEffect(() => {
           paddingVertical: 5,
           paddingHorizontal: 10,
         }}>
-          <TouchableOpacity
-            style={{alignSelf: 'flex-end'}}
-            onPress={() => rotateScreen()}>
-            <Appicon icon={icons.full} color={COLORS.white} />
-          </TouchableOpacity>
-        
+        <TouchableOpacity
+          style={{alignSelf: 'flex-end'}}
+          onPress={() => rotateScreen()}>
+          <Appicon icon={icons.full} color={COLORS.white} />
+        </TouchableOpacity>
       </View>
     </>
   );

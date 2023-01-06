@@ -83,7 +83,7 @@ export const AppMovieCard = ({
             }}>
             <Appicon icon={icons.play_new} color={COLORS.white} size={40} />
           </View>
-        ) }
+        )}
         <Image
           source={{
             uri: helpers.getImage(movie.poster),

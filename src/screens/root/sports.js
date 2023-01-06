@@ -51,9 +51,9 @@ export const SportsScreen = ({route, navigation}) => {
 
   const {item} = route.params;
 
-  useEffect(() =>{
-    alert(JSON.stringify(props))
-  },[])
+  useEffect(() => {
+    alert(JSON.stringify(props));
+  }, []);
 
   const renderTitle = title => {
     return (
@@ -77,12 +77,12 @@ export const SportsScreen = ({route, navigation}) => {
     );
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      dispatch(getDemandDefaultIndex(item?.id));
-    });
-    return unsubscribe;
-  }, [navigation]);
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     dispatch(getDemandDefaultIndex(item?.id));
+  //   });
+  //   return unsubscribe;
+  // }, [navigation]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', async () => {

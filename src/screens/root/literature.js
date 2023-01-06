@@ -102,7 +102,7 @@ export const LiteratureScreen = ({route, navigation}) => {
             ))}
           </ScrollView>
           {/* Literature Cover  */}
-          <View style={{marginVertical: 10,}}>
+          <View style={{marginVertical: 10}}>
             <LiteratureCover featured={featured} />
           </View>
 

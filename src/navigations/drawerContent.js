@@ -24,9 +24,24 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const menu_items = [
   {title: 'Home', frTitle: 'Maison', icon: 'home', route: 'main'},
   {title: 'Profile', frTitle: 'Profil', icon: 'user', route: 'profile'},
-  {title: 'Available plans', frTitle: 'Forfaits disponibles', icon: 'planning', route: 'plans'},
-  {title: 'Change password', frTitle: 'Changer le mot de passe', icon: 'password', route: 'password'},
-  {title: 'Notifications', frTitle: 'Avis', icon: 'bell', route: 'notification'},
+  {
+    title: 'Available plans',
+    frTitle: 'Forfaits disponibles',
+    icon: 'planning',
+    route: 'plans',
+  },
+  {
+    title: 'Change password',
+    frTitle: 'Changer le mot de passe',
+    icon: 'password',
+    route: 'password',
+  },
+  {
+    title: 'Notifications',
+    frTitle: 'Avis',
+    icon: 'bell',
+    route: 'notification',
+  },
   {title: 'Invoices', frTitle: 'Factures', icon: 'invoice', route: 'invoices'},
   {title: 'Privacy', frTitle: 'Intimité', icon: 'privacy', route: 'privacy'},
   {title: 'Sign out', frTitle: 'Déconnexion', icon: 'logout', route: 'signout'},
@@ -106,8 +121,7 @@ const SwitchLangButtons = ({onPress, activeLang}) => {
             fontSize: 12,
             color: activeLang === 'fr' ? COLORS.white : COLORS.black,
           }}>
-         {activeLang === 'en' ? 'French' : 'Français'}
-
+          {activeLang === 'en' ? 'French' : 'Français'}
         </Text>
       </Pressable>
     </View>
@@ -125,17 +139,17 @@ export const DrawerContent = props => {
 
   const handleLanguage = async lang => {
     changeLanguage(lang);
-    setLanguage('fr')
+    setLanguage('fr');
     setActiveLang(lang);
     await localStorage.saveLang(lang);
-  //   if (lang === 'en') {
-  //     AsyncStorage.removeItem('AppLocal')
-  //   }else{
-  //   AsyncStorage.setItem('AppLocal', 'fr').then(() => {
-  //     setLanguage('fr')
-  //   })
-  // }
-    console.log("language is ::::::", lang);
+    //   if (lang === 'en') {
+    //     AsyncStorage.removeItem('AppLocal')
+    //   }else{
+    //   AsyncStorage.setItem('AppLocal', 'fr').then(() => {
+    //     setLanguage('fr')
+    //   })
+    // }
+    console.log('language is ::::::', lang);
   };
 
   const renderAccountinfo = () => {
@@ -230,7 +244,7 @@ export const DrawerContent = props => {
             color:
               activeRoute === menu.route ? COLORS.primary : 'rgba(0,0,0,0.7)',
           }}>
-          {activeLang === 'en'?  menu.title : menu.frTitle}
+          {activeLang === 'en' ? menu.title : menu.frTitle}
         </Text>
       </Pressable>
     ));
@@ -265,7 +279,7 @@ export const DrawerContent = props => {
             fontSize: 10,
             marginBottom: getBottomSpace(),
           }}>
-          v<Text>1.0.0</Text>
+          v<Text>1.9</Text>
         </Text>
       </View>
     </View>

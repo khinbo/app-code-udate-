@@ -1,21 +1,20 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add react-native-orientation-locker
+  /usr/local/bin/node /usr/local/bin/yarn install
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 
 Yarn version: 
-  1.22.10
+  1.22.11
 
 Node version: 
-  16.14.0
+  16.16.0
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: read ECONNRESET
-      at TLSWrap.onStreamRead (node:internal/stream_base_commons:217:20)
+  Error: ENOSPC: no space left on device, copyfile '/Users/nasirsaleem/Library/Caches/Yarn/v6/npm-react-native-0.69.1-093363ea697185b5d8f0e523fce3654b833ad0be-integrity/node_modules/react-native/android/com/facebook/react/hermes-engine/0.69.1/hermes-engine-0.69.1-debug.aar' -> '/Users/nasirsaleem/Desktop/Workspace/react-native/khinbo/node_modules/react-native/android/com/facebook/react/hermes-engine/0.69.1/hermes-engine-0.69.1-debug.aar'
 
 npm manifest: 
   {
@@ -80,6 +79,8 @@ npm manifest:
       "react-native-video": "^6.0.0-alpha.1",
       "react-native-video-player": "^0.12.0",
       "react-redux": "^8.0.2",
+      "redux": "^4.2.0",
+      "redux-thunk": "^2.4.2",
       "rn-fetch-blob": "^0.12.0",
       "use-immer": "^0.7.0",
       "yup": "^0.32.11"
@@ -6691,7 +6692,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
     integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
   
-  redux@^4.1.2:
+  redux-thunk@^2.4.2:
+    version "2.4.2"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.2.tgz#b9d05d11994b99f7a91ea223e8b04cf0afa5ef3b"
+    integrity sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==
+  
+  redux@^4.1.2, redux@^4.2.0:
     version "4.2.0"
     resolved "https://registry.yarnpkg.com/redux/-/redux-4.2.0.tgz#46f10d6e29b6666df758780437651eeb2b969f13"
     integrity sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==
