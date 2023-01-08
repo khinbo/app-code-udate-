@@ -1,8 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text} from 'react-native';
 import {COLORS, SIZES} from '../../constants/theme';
 
-export const AppNoDataFound = ({title = 'No Data Found...'}) => (
+export const AppNoDataFound = ({
+  title = 'No Data Found...',
+  color = COLORS.gray,
+}) => (
   <View
     style={{
       width: SIZES.width,
@@ -12,6 +16,7 @@ export const AppNoDataFound = ({title = 'No Data Found...'}) => (
       style={{
         textAlign: 'center',
         marginTop: 20,
+        color,
       }}>
       {title}
     </Text>

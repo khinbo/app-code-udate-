@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import navigation from '../../navigations/rootNavigation';
 import video from '../../refs/video';
@@ -29,15 +30,7 @@ export const getRecommmendedContents = createAsyncThunk(
       if (!resp.ok)
         toast.show(resp.data?.message ? resp.data?.message : 'network error');
       else {
-        let newArray = resp?.data.sort((a, b) =>
-          b.updated_at
-            .split('/')
-            .reverse()
-            .join()
-            .localeCompare(a.updated_at.split('/').reverse().join()),
-        );
-        dispatch(setContents(newArray));
-        // console.log("Content DAta Is:::::::::: ", newArray);
+        dispatch(setContents(resp?.data));
         dispatch(setLoading(false));
       }
     });

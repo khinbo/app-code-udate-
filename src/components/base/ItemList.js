@@ -31,7 +31,7 @@ export const ItemList = ({item, height, onPressItem, active}) => (
         flex: 1,
       }}>
       <Image
-        source={{uri: helpers.getImage(item?.icon)}}
+        source={{uri: helpers.getImage(item?.cover)}}
         style={{
           height: 65,
           width: 80,

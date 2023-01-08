@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+
 import moment from 'moment';
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
@@ -7,10 +8,11 @@ import {COLORS, FONTS, SIZES} from '../../constants/theme';
 
 const CARD_WIDTH = SIZES.width / 2 - 20;
 
-export const AppRecordingList = ({movie, onPress}) => {
+export const AppRecordingList = ({movie, onPress, onLongPress}) => {
   return (
     <TouchableOpacity
       onPress={() => onPress(movie)}
+      onLongPress={onLongPress}
       activeOpacity={0.7}
       style={{
         margin: 10,

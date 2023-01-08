@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, Alert} from 'react-native';
+import RNFetchBlob from 'rn-fetch-blob';
 import {useDispatch} from 'react-redux';
 import {AppHeader, AppRecordingList, BaseView} from '../../components';
 import {AppNoDataFound} from '../../components/base/AppNoData';
@@ -8,10 +9,10 @@ import {COLORS, FONTS} from '../../constants/theme';
 import {translate} from '../../I18n';
 import localStorage from '../../server/localStorage';
 import {onContentViewHandler} from '../../store/reducers/player';
+import toast from '../../toast';
 
 export const RecordingScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   const [downloads, setDownloads] = useState([]);
 
   useEffect(() => {
@@ -26,16 +27,37 @@ export const RecordingScreen = ({navigation}) => {
   }, []);
 
   const fetchData = () => {
-    setLoading(true);
     localStorage.getDownload().then(resp => {
       const data = JSON.parse(resp) ?? [];
       const filterData = data.filter(item => item.status === 'complete');
       setDownloads(filterData);
     });
-    setLoading(false);
   };
   const onPressMedia = item => {
     dispatch(onContentViewHandler({item, type: 'all', status: 'offline'}));
+  };
+
+  const onRemoveMedia = item => {
+    const fileName = item.path;
+    let dirs = RNFetchBlob.fs.dirs;
+    const path = dirs.DocumentDir + `/${fileName}`;
+    RNFetchBlob.fs.exists(path).then(exist => {
+      if (exist) {
+        RNFetchBlob.fs
+          .unlink(path)
+          .then(() => {
+            localStorage.getDownload().then(async resp => {
+              const data = JSON.parse(resp) ?? [];
+              const filterData = data.filter(i => i.id !== item.id);
+              const payloadString = JSON.stringify(filterData);
+              await localStorage.saveDownload(payloadString);
+              setDownloads(filterData);
+              toast.show('media deleted');
+            });
+          })
+          .catch(() => toast.show('error while removing media.'));
+      }
+    });
   };
 
   return (
@@ -46,7 +68,7 @@ export const RecordingScreen = ({navigation}) => {
           backgroundColor: COLORS.black,
         }}
       />
-      <BaseView styles={styles.container} loading={loading}>
+      <BaseView styles={styles.container}>
         <FlatList
           style={{
             flexGrow: 1,
@@ -56,7 +78,27 @@ export const RecordingScreen = ({navigation}) => {
           data={downloads}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
-            <AppRecordingList movie={item} onPress={onPressMedia} />
+            <AppRecordingList
+              movie={item}
+              onPress={onPressMedia}
+              onLongPress={() =>
+                Alert.alert(
+                  'Delete Media?',
+                  'Are you sure tou want to delete media from recordings.',
+                  [
+                    {
+                      text: 'Cancel',
+                      onPress: () => {},
+                    },
+                    {
+                      text: 'Delete',
+                      onPress: () => onRemoveMedia(item),
+                      style: 'destructive',
+                    },
+                  ],
+                )
+              }
+            />
           )}
           ListEmptyComponent={() => (
             <AppNoDataFound title="No record found..." />

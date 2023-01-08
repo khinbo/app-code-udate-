@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {RefreshControl, View, ActivityIndicator} from 'react-native';
 import BigList from 'react-native-big-list';

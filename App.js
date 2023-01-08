@@ -31,7 +31,7 @@ const App = () => {
     const firstVisitValue = await localStorage.getIsFirstTime();
     setFirstVisit(firstVisitValue);
     const lang = await localStorage.getLang();
-    await changeLanguage(lang ? lang : 'en');
+    await changeLanguage(lang ? lang : 'fr');
     server.getStripeKey().then(resp => {
       if (!resp.ok)
         toast.show(JSON.stringify(resp.data?.message ?? 'Network error'));

@@ -22,7 +22,6 @@ import {translate} from '../../I18n';
 import {getHomeData, setRefresh} from '../../store/reducers/home';
 import AuthContext from '../../store/AuthContext';
 import {useSharedValue} from 'react-native-reanimated';
-import localStorage from '../../server/localStorage';
 
 const PAGE_WIDTH = SIZES.width;
 export const Home = () => {
@@ -30,7 +29,6 @@ export const Home = () => {
   const dispatch = useDispatch();
   const {
     initialLoading,
-    sliderData,
     refresh,
     images,
     recentlyWatched,
