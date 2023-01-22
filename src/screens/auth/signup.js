@@ -7,7 +7,9 @@ import {
   StyleSheet,
   Platform,
   Image,
+  Linking,
 } from 'react-native';
+
 import * as Yup from 'yup';
 import {
   AppForm,
@@ -60,6 +62,16 @@ export const SignupScreen = ({navigation}) => {
       accessibilityLabel: '3',
     },
   ];
+
+  const openURL = url => {
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        toast.show(`Don't know how to open URI: ${url}`);
+      }
+    });
+  };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required().label('Name'),
@@ -218,13 +230,25 @@ export const SignupScreen = ({navigation}) => {
                 <View style={{paddingHorizontal: 40, marginTop: 20}}>
                   <Text style={styles.terms}>
                     {translate('byClickingOnOfTheButtons')}{' '}
-                    <Text style={{color: COLORS.primary}}>
+                    <Text
+                      style={{color: COLORS.primary}}
+                      onPress={() =>
+                        openURL(
+                          'https://www.privacypolicies.com/live/35e59387-5b1a-4bb8-b7bf-da6a9c030b36',
+                        )
+                      }>
                       {translate('terms')}
                     </Text>
                   </Text>
                   <Text style={styles.privacy}>
                     {translate('pleaseRead')}{' '}
-                    <Text style={{color: COLORS.primary}}>
+                    <Text
+                      style={{color: COLORS.primary}}
+                      onPress={() =>
+                        openURL(
+                          'https://www.privacypolicies.com/live/35e59387-5b1a-4bb8-b7bf-da6a9c030b36',
+                        )
+                      }>
                       {translate('privacyPilicy')}
                     </Text>{' '}
                     {translate('toKnowWeUseData')}

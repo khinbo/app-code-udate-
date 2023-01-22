@@ -279,7 +279,7 @@ export const DrawerContent = props => {
             fontSize: 10,
             marginBottom: getBottomSpace(),
           }}>
-          v<Text>1.9</Text>
+          v<Text>1.9.1</Text>
         </Text>
       </View>
     </View>
