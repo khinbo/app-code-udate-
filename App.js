@@ -14,6 +14,7 @@ import server from './src/server';
 import localStorage from './src/server/localStorage';
 import {changeLanguage} from './src/I18n';
 import {StripeProvider} from '@stripe/stripe-react-native';
+import Orientation from 'react-native-orientation-locker';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -23,6 +24,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    Orientation.lockToPortrait();
     initialize();
   }, []);
 

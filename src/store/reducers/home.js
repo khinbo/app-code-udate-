@@ -1,3 +1,6 @@
+/* eslint-disable curly */
+/* eslint-disable no-trailing-spaces */
+
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import toast from '../../toast';
 import server from '../../server';
@@ -24,14 +27,10 @@ export const getHomeData = createAsyncThunk(
     server.getHomeData().then(resp => {
       if (!resp.ok)
         toast.show(resp.data?.message ? resp.data.message : 'network error');
-      else 
-      {
-        var newArray = resp.data.slider_data.sort((a, b) =>
-        { a.created_at.split('/').reverse().join().localeCompare(b.created_at.split('/').reverse().join())}) 
-        // alert(JSON.stringify(resp.data.recently_watched))
-      dispatch(sethomeData(resp.data)); // reverse function
-      dispatch(setInitialLoading(false));
-      dispatch(setRefresh(false));
+      else {
+        dispatch(sethomeData(resp.data));
+        dispatch(setInitialLoading(false));
+        dispatch(setRefresh(false));
       }
     });
   },
