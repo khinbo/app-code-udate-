@@ -47,5 +47,9 @@
   "notifications": "Avis",
   "invoices": "Factures",
   "privacy": "Intimité",
-  "signOut" : "Déconnexion"
+  "signOut" : "Déconnexion",
+  "holdOn":"un instant!",
+  "youWantToGoBack":"Êtes-vous sûr de vouloir revenir en arrière ?",
+  "yes": "Oui",
+  "cancel" : "Annuler"
 }

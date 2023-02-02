@@ -46,5 +46,10 @@
     "notifications": "Notifications",
     "invoices": "Invoices",
     "privacy": "Privacy",
-    "signOut" : "Sign out"
+    "signOut" : "Sign out",
+    "holdOn":"Hold on!",
+    "youWantToGoBack":"Are you sure you want to go back?",
+    "yes": "Yes",
+    "cancel" : "Cancel"
+    
 }

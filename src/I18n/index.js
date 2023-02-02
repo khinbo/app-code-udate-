@@ -57,6 +57,18 @@ const en = {
   invoices: 'Invoices',
   privacy: 'Privacy',
   signOut: 'Sign out',
+  holdOn: 'Hold on!',
+  youWantToGoBack: 'Are you sure you want to go back?',
+  yes: 'Yes',
+  cancel: 'Cancel',
+  deleteMedia: 'Delete Media?',
+  youWantToDeleteRecording:
+    'Are you sure tou want to delete media from recordings.',
+  delete: 'Delete',
+  goBack: 'Go Back',
+  unableToSwitch: 'Unable to Switch from Annual to Monthly Plan',
+  notPossibleToSwitchFromAnnualToMonthly:
+    'It is not possible to switch from an annual plan to a monthly plan once the annual plan has already been purchased.',
 };
 
 const fr = {
@@ -110,6 +122,18 @@ const fr = {
   invoices: 'Factures',
   privacy: 'Intimité',
   signOut: 'Déconnexion',
+  holdOn: 'un instant!',
+  youWantToGoBack: 'Êtes-vous sûr de vouloir revenir en arrière ?',
+  yes: 'Oui',
+  cancel: 'Annuler',
+  deleteMedia: 'Supprimer le média ?',
+  youWantToDeleteRecording:
+    'Êtes-vous sûr de vouloir supprimer les médias des enregistrements.',
+  delete: 'Supprimer',
+  goBack: 'Retournez',
+  unableToSwitch: 'Impossible de passer du forfait annuel au forfait mensuel',
+  notPossibleToSwitchFromAnnualToMonthly:
+    "Il n'est pas possible de passer d'un forfait annuel à un forfait mensuel une fois que le forfait annuel a déjà été acheté.",
 };
 
 i18n.translations = {en, fr};

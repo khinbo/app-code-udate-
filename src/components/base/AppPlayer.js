@@ -18,6 +18,7 @@ import icons from '../../constants/icons';
 import {useNavigation} from '@react-navigation/native';
 import server from '../../server';
 import AuthContext from '../../store/AuthContext';
+import {translate} from '../../I18n';
 
 const percentageViewCount = 10;
 
@@ -84,14 +85,14 @@ export const AppPlayer = ({
   };
 
   const backAction = () => {
-    Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+    Alert.alert(translate('holdOn'), translate('youWantToGoBack'), [
       {
-        text: 'Cancel',
+        text: translate('cancel'),
         onPress: () => null,
         style: 'cancel',
       },
       {
-        text: 'YES',
+        text: translate('yes'),
         onPress: async () => {
           if (navigation.canGoBack()) {
             Orientation.getOrientation(status => {

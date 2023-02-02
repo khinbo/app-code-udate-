@@ -58,6 +58,7 @@ export const LiteratureScreen = ({route, navigation}) => {
   useEffect(() => {
     if (selectedCategory) {
       dispatch(onSelectCategory(selectedCategory));
+      dispatch(OnSelecteSubCategory({id: selectedCategory, type: 'category'}));
     }
   }, [selectedCategory]);
 

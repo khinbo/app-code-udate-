@@ -1,8 +1,12 @@
+/* eslint-disable curly */
+/* eslint-disable no-undef */
+/* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useState} from 'react';
 import {Text, View, StyleSheet, Alert} from 'react-native';
 import {AppButton, AppHeader, Appicon, BaseView} from '../../components';
 import icons from '../../constants/icons';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
+import {translate} from '../../I18n';
 import server from '../../server';
 import AuthContext from '../../store/AuthContext';
 
@@ -79,6 +83,22 @@ export const PlanDetailsScreen = ({navigation, route}) => {
                     }, 300);
                   });
                 } else {
+                  if (item.days < 31)
+                    return Alert.alert(
+                      translate('unableToSwitch'),
+                      translate('notPossibleToSwitchFromAnnualToMonthly'),
+                      [
+                        {
+                          text: translate('cancel'),
+                          onPress: () => {},
+                        },
+                        {
+                          text: translate('goBack'),
+                          onPress: () => navigation.goBack(),
+                          style: 'destructive',
+                        },
+                      ],
+                    );
                   navigation.navigate('payment', {plan: item});
                 }
               }}

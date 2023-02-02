@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {RefreshControl, View, ActivityIndicator} from 'react-native';
+import {RefreshControl, View, ActivityIndicator, FlatList} from 'react-native';
 import BigList from 'react-native-big-list';
 
 import {COLORS} from '../../constants/theme';
@@ -15,12 +15,12 @@ export const AppFlatList = ({
   ...otherProps
 }) => {
   return (
-    <BigList
+    <FlatList
       showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
-      renderFooter={() =>
+      ListFooterComponent={() =>
         isFooter ? (
           <View
             style={{
@@ -36,8 +36,11 @@ export const AppFlatList = ({
           </View>
         ) : null
       }
-      footerHeight={isFooter ? footerHeight : 0}
-      placeholder={true}
+      ListFooterComponentStyle={{
+        height: isFooter ? footerHeight : 0,
+      }}
+      // footerHeight={isFooter ? footerHeight : 0}
+      // placeholder={true}
       {...otherProps}
     />
   );

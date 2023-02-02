@@ -83,15 +83,15 @@ export const RecordingScreen = ({navigation}) => {
               onPress={onPressMedia}
               onLongPress={() =>
                 Alert.alert(
-                  'Delete Media?',
-                  'Are you sure tou want to delete media from recordings.',
+                  translate('deleteMedia'),
+                  translate('youWantToDeleteRecording'),
                   [
                     {
-                      text: 'Cancel',
+                      text: translate('cancel'),
                       onPress: () => {},
                     },
                     {
-                      text: 'Delete',
+                      text: translate('delete'),
                       onPress: () => onRemoveMedia(item),
                       style: 'destructive',
                     },

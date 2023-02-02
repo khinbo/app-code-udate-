@@ -68,6 +68,7 @@ export const StyleScreen = ({route, navigation}) => {
   useEffect(() => {
     if (selectedCategory) {
       dispatch(onSelectCategory(selectedCategory));
+      dispatch(OnSelecteSubCategory({id: selectedCategory, type: 'category'}));
     }
   }, [selectedCategory]);
 
