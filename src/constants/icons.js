@@ -45,6 +45,7 @@ const edit = require('../assets/edit.png');
 const pause = require('../assets/pause.png');
 const tick = require('../assets/tick.png');
 const downloadDone = require('../assets/download_done.png');
+const expend = require('../assets/expand.png');
 
 export default {
   user,
@@ -94,4 +95,5 @@ export default {
   pause,
   tick,
   downloadDone,
+  expend,
 };

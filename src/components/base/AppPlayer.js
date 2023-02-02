@@ -21,6 +21,9 @@ import AuthContext from '../../store/AuthContext';
 
 const percentageViewCount = 10;
 
+const playerWidth = SIZES.height;
+const PlayerHeight = SIZES.height / 1.7777777;
+
 export const AppPlayer = ({
   id,
   url,
@@ -39,6 +42,7 @@ export const AppPlayer = ({
   const navigation = useNavigation();
   const [fullScreen, setFullScreen] = useState(false);
   const [viewLogged, setViewLogged] = useState(false);
+  const [resizeMode, setResizeMode] = useState('contain');
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
@@ -55,7 +59,6 @@ export const AppPlayer = ({
 
   const onPlayCallBack = async status => {
     const {currentTime, seekableDuration} = status;
-
     const playTime = currentTime * 1000;
     const total_time = seekableDuration * 1000;
 
@@ -68,16 +71,14 @@ export const AppPlayer = ({
           .updateViews(id, {
             collection: type === 'demands' ? 'demand' : 'media',
           })
-          .then(resp => console.log(resp.data));
+          .then(resp => console.log(resp.data, 'view function'));
       }
     }
 
     if (video_limit) {
       if (helpers.checkSubsciption(user) === SUBSCRIBE) return;
       if (playTime > limit) {
-        if (navigation.canGoBack()) {
-          video?.stopAsync();
-        }
+        video?.stopAsync();
       }
     }
   };
@@ -150,11 +151,25 @@ export const AppPlayer = ({
           </Text>
         )}
         {fullScreen && (
-          <TouchableOpacity
-            style={{alignSelf: 'flex-end'}}
-            onPress={() => rotateScreen(false)}>
-            <Appicon icon={icons.full} color={COLORS.white} />
-          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+            }}>
+            <TouchableOpacity
+              style={{marginRight: 20}}
+              onPress={() =>
+                setResizeMode(resizeMode === 'contain' ? 'stretch' : 'contain')
+              }>
+              <Appicon icon={icons.expend} color={COLORS.white} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{alignSelf: 'flex-end'}}
+              onPress={() => rotateScreen(false)}>
+              <Appicon icon={icons.full} color={COLORS.white} />
+            </TouchableOpacity>
+          </View>
         )}
       </View>
       <VideoPlayer
@@ -162,9 +177,9 @@ export const AppPlayer = ({
         video={{
           uri: url,
         }}
-        resizeMode="stretch"
-        videoWidth={fullScreen ? 1600 : 1600}
-        videoHeight={fullScreen ? SIZES.height - 20 : 900}
+        resizeMode={resizeMode}
+        videoWidth={playerWidth}
+        videoHeight={fullScreen ? PlayerHeight - 70 : PlayerHeight}
         thumbnail={{uri: helpers.getImage(poster)}}
         autoplay={shouldPlay}
         onProgress={onPlayCallBack}
@@ -173,12 +188,23 @@ export const AppPlayer = ({
         }}
         {...otherProps}
       />
+
       <View
         style={{
           backgroundColor: COLORS.black,
           paddingVertical: 5,
           paddingHorizontal: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
         }}>
+        <TouchableOpacity
+          style={{marginRight: 20}}
+          onPress={() =>
+            setResizeMode(resizeMode === 'contain' ? 'stretch' : 'contain')
+          }>
+          <Appicon icon={icons.expend} color={COLORS.white} />
+        </TouchableOpacity>
         <TouchableOpacity
           style={{alignSelf: 'flex-end'}}
           onPress={() => rotateScreen(true)}>
