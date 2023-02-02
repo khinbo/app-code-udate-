@@ -1,8 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {GenreStack, HomeStack, OnDemandStack} from './stacknavigation';
+import {HomeStack, OnDemandStack} from './stacknavigation';
 import {MyTabBar} from './MyTabBar';
 import {RecordingScreen} from '../screens/root/recording';
+import {translate} from '../I18n';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +33,7 @@ export const BottomTab = () => {
         name="ondemand"
         component={OnDemandStack}
         options={{
-          title: 'On Demand',
+          title: translate('onDemand'),
         }}
       />
       <Tab.Screen

@@ -22,28 +22,41 @@ import {changeLanguage, setLanguage} from '../I18n';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const menu_items = [
-  {title: 'Home', frTitle: 'Maison', icon: 'home', route: 'main'},
-  {title: 'Profile', frTitle: 'Profil', icon: 'user', route: 'profile'},
   {
-    title: 'Available plans',
-    frTitle: 'Forfaits disponibles',
+    // title: 'Home',
+    title: 'Accueil',
+    frTitle: 'Accueil',
+    icon: 'home',
+    route: 'main',
+  },
+  {
+    title: 'Profil',
+    // title: 'Profile',
+    frTitle: 'Profil',
+    icon: 'user',
+    route: 'profile',
+  },
+  {
+    title: 'Plans',
+    frTitle: 'Plans',
     icon: 'planning',
     route: 'plans',
   },
   {
-    title: 'Change password',
+    // title: 'Change password',
+    title: 'Changer le mot de passe',
     frTitle: 'Changer le mot de passe',
     icon: 'password',
     route: 'password',
   },
-  {
-    title: 'Notifications',
-    frTitle: 'Avis',
-    icon: 'bell',
-    route: 'notification',
-  },
-  {title: 'Invoices', frTitle: 'Factures', icon: 'invoice', route: 'invoices'},
-  {title: 'Privacy', frTitle: 'Intimité', icon: 'privacy', route: 'privacy'},
+  // {
+  //   title: 'Notifications',
+  //   frTitle: 'Avis',
+  //   icon: 'bell',
+  //   route: 'notification',
+  // },
+  // {title: 'Invoices', frTitle: 'Factures', icon: 'invoice', route: 'invoices'},
+  // {title: 'Privacy', frTitle: 'Intimité', icon: 'privacy', route: 'privacy'},
   {title: 'Sign out', frTitle: 'Déconnexion', icon: 'logout', route: 'signout'},
 ];
 
