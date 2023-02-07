@@ -51,7 +51,11 @@ const en = {
   onDemand: 'ON DEMAND',
   recording: 'RECORDING',
   profile: 'Profile',
+  // for drawer
   availablePlans: 'Plans',
+  // for screens header title
+  plans: 'Available Plans',
+  plans: "'Available Plans'",
   changePassword: 'Change password',
   notifications: 'Notifications',
   invoices: 'Invoices',
@@ -110,13 +114,16 @@ const fr = {
   genresTitle: 'GENRE',
   noRecordFound: 'Aucun Enregistrement Trouvé..',
   recentlyWatched: 'Regardé récemment',
-  justForYou: 'Juste pour toi',
+  justForYou: "Vos centres d'intérêts",
   popularVideosIn: 'Vidéos populaires dans',
   contentsYouMightBeInterested: 'Contenu qui pourrait vous intéresser',
   onDemand: 'A LA DEMANDE',
   recording: 'ENREGISTREMENT',
   profile: 'Profil',
+  // for drawer
   availablePlans: 'Plans',
+  // for header title
+  plans: ' Plans Disponibles',
   changePassword: 'Changer le mot de passe',
   notifications: 'Avis',
   invoices: 'Factures',

@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppHeader, Appicon, BaseView} from '../../components';
 import icons from '../../constants/icons';
 import {COLORS, FONTS} from '../../constants/theme';
+import {translate} from '../../I18n';
 import AuthContext from '../../store/AuthContext';
 import {getPackages} from '../../store/reducers/packages';
 
@@ -73,7 +74,7 @@ export const AvailiblePlansScreen = ({navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: COLORS.white}}>
-      <AppHeader title={'Availible Plans'} />
+      <AppHeader title={translate('plans')} />
       <BaseView
         styles={{flex: 1, paddingHorizontal: 5}}
         loading={initialLoading}>
