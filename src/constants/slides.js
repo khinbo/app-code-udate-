@@ -1,18 +1,25 @@
 export default [
   {
     id: 1,
-    image: require('../assets/onboard_one.png'),
-    title:
-      'Follow live shows on khinbo and witness the entertainment revolution',
+    image: require('../assets/onboard_one_new.png'),
+    title: 'Experience your passion through the latest',
+    HeighLightWord: ' Sports Videos.',
+    subTitle:
+      'Revivez les temps forts du sport et restez à jour sur les derniers événements les plus importants, disponibles sur demande.',
   },
   {
     id: 2,
-    image: require('../assets/onboard_two.png'),
-    title: 'With Khinbo, savor the to your riches music to your liking',
+    image: require('../assets/onboard_two_new.png'),
+    title: 'Experience your passion through',
+    HeighLightWord: ' Art and Culture',
+    subTitle:
+      "Plongez dans le monde vibrant de l'art et de la culture et découvrez les concepts les plus récents et les plus captivants en vidéo.",
   },
   {
     id: 3,
-    title: 'Find new talents and artists on Khinbo every week',
-    image: require('../assets/onboard_three.png'),
+    HeighLightWord: 'Khinbo AGENDA',
+    subTitle:
+      'Sorties Littéraires - Exposition - Performance - Evénement - Cinéma - Musique - Festival - Sorties Artistiques - Etc.',
+    image: require('../assets/onboard_three_new.png'),
   },
 ];

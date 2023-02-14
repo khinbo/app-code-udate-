@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Image, Animated, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Animated,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import {AppButton} from '../../components';
 import slides from '../../constants/slides';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
@@ -26,8 +33,23 @@ export const Onboarding = ({navigation}) => {
           {useNativeDriver: false},
         )}>
         {slides.map((slide, index) => (
-          <View key={index} style={{height: SIZES.height, width: SIZES.width}}>
-            <View style={{flex: 2}}>
+          <View
+            key={index}
+            style={{
+              height: SIZES.height,
+              width: SIZES.width,
+            }}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('signup')}
+              style={{
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                paddingRight: 20,
+                height: 45,
+              }}>
+              <Text style={{color: COLORS.error, ...FONTS.body2}}>Skip</Text>
+            </TouchableOpacity>
+            <View style={{flex: 1}}>
               <Image
                 source={slide.image}
                 style={{height: '100%', width: '100%'}}
@@ -39,18 +61,31 @@ export const Onboarding = ({navigation}) => {
               }}>
               <View
                 style={{
-                  margin: 30,
+                  margin: 10,
                   alignItems: 'center',
-                  justifyContent: 'space-between',
+
                   flex: 1,
                 }}>
                 <Text
                   style={{
-                    ...FONTS.body2,
+                    ...FONTS.h2,
                     textAlign: 'center',
-                    color: 'rgba(0,0,0,0.6)',
+                    color: COLORS.black,
+                    marginTop: 10,
                   }}>
                   {slide.title}
+                  <Text style={{color: COLORS.primarydarker}}>
+                    {slide.HeighLightWord}
+                  </Text>
+                </Text>
+                <Text
+                  style={{
+                    ...FONTS.body3,
+                    textAlign: 'center',
+                    color: COLORS.gray,
+                    marginTop: 20,
+                  }}>
+                  {slide.subTitle}
                 </Text>
               </View>
             </View>
@@ -98,9 +133,11 @@ export const Onboarding = ({navigation}) => {
       {renderContent()}
       <View
         style={{
-          width: '70%',
+          width: '100%',
+          paddingHorizontal: 10,
           alignItems: 'center',
           marginBottom: 10,
+
           position: 'absolute',
           bottom: SIZES.height > 700 ? 30 : 20,
           alignSelf: 'center',

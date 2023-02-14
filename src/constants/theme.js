@@ -6,7 +6,7 @@ export const COLORS = {
   primary: '#f0923d',
   primary_light: '#f38759',
   primary_rgba: '238, 162, 63',
-  primarydarker: '#f0923d',
+  primarydarker: '#C94401',
   primarylighter: '#f7ad3d',
   secondary: '#f9aa33',
   red: '#db3a34',

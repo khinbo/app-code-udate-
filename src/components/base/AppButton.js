@@ -4,11 +4,13 @@ import {View, Text, Pressable, Platform, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS, FONTS} from '../../constants/theme';
 
-const active_colors = [COLORS.primarydarker, COLORS.primarylighter];
+const active_colors = [COLORS.primarylighter, COLORS.primarydarker];
 const disabled_colors = [COLORS.gray, COLORS.gray];
 export const AppButton = ({title, onPress, radius = 5, loading, disable}) => {
   return (
     <LinearGradient
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
       colors={
         disable ? disabled_colors : loading ? disabled_colors : active_colors
       }
