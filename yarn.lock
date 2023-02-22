@@ -1761,6 +1761,21 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
+"@types/react-native-video@^5.0.13":
+  version "5.0.14"
+  resolved "https://registry.yarnpkg.com/@types/react-native-video/-/react-native-video-5.0.14.tgz#275d08f836280ace088462b2cb267925a6a915f3"
+  integrity sha512-KdcyY4HY/Q1l6f5qQA337BNVN+GsdZy836j9CXbWHZ008VVNzSlnJypJQPsnUgI0EPBw/uG/lyJk6cg9Jj1syg==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react-native@*":
+  version "0.71.3"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.71.3.tgz#537f669ed6b38b5ae47444bd9d253c4cff23bed7"
+  integrity sha512-0Uqw1YZ0qbVla0MMWFTANFm6W8KYWNvGQmYfucdecbXivLMcQ2v4PovuYFKr7bE6Bc5nDCUEaga962Y8gcDF7A==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "18.0.15"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.15.tgz#d355644c26832dc27f3e6cbf0c4f4603fc4ab7fe"
@@ -6339,6 +6354,17 @@ react-native-flip-card@^3.3.0:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-gesture-handler@^2.4.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.9.0.tgz#2f63812e523c646f25b9ad660fc6f75948e51241"
+  integrity sha512-a0BcH3Qb1tgVqUutc6d3VuWQkI1AM3+fJx8dkxzZs9t06qA27QgURYFoklpabuWpsUTzuKRpxleykp25E8m7tg==
+  dependencies:
+    "@egjs/hammerjs" "^2.0.17"
+    hoist-non-react-statics "^3.3.0"
+    invariant "^2.2.4"
+    lodash "^4.17.21"
+    prop-types "^15.7.2"
+
 react-native-gesture-handler@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.5.0.tgz#61385583570ed0a45a9ed142425e35f8fe8274fb"
@@ -6370,7 +6396,7 @@ react-native-navigation-bar-color@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.2.tgz#2e14ca79a656d81d5b4b7433ae43966ef5206444"
   integrity sha512-ZmpLWRocyme1au11e5ZuecMS/UCi57nlzgnioi03Q6ERMbeUOqqbWgNBaNB7SsCeqBV6fZPjo3+A64zEIpzw4w==
 
-react-native-orientation-locker@^1.5.0:
+react-native-orientation-locker@^1.4.0, react-native-orientation-locker@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-native-orientation-locker/-/react-native-orientation-locker-1.5.0.tgz#324853937eed4835ecd1c8613ab2206135d908ac"
   integrity sha512-4XOCGmNN4BXg5JUFjUuXpsfhPJmbA3LkQilJO1ed+6vL97teTdG2w5IEevKiqL9/hPjeWE8YYtX/YW+yp53hkg==
@@ -6424,6 +6450,11 @@ react-native-screens@^3.15.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-system-setting@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/react-native-system-setting/-/react-native-system-setting-1.7.6.tgz#43633604ac1bd5fd906acdbffa627a1998d2345a"
+  integrity sha512-nBnIK5Xnyu8XRRA3BMzRI54oYlSBKc0oOTQdZOCEeOvn4ltS1nk2shj/vtMQe6khXvuhai3vIc+g7DcsOcr5+w==
+
 react-native-vector-icons@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-9.2.0.tgz#3c0c82e95defd274d56363cbe8fead8d53167ebd"
@@ -6431,6 +6462,23 @@ react-native-vector-icons@^9.2.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-video-basic-controls@^0.1.16:
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/react-native-video-basic-controls/-/react-native-video-basic-controls-0.1.16.tgz#73fc209d2bf306a58474dd08e213497d28dfeb20"
+  integrity sha512-WqnwrIpknRjBVGFeYxA7e6KjNfVae5HxIfZVRhAuzsla4Gb5gHk74ktH2BwAOTiw1+AYftsXRLbaCoPOIWFXRg==
+  dependencies:
+    "@types/react-native-video" "^5.0.13"
+    deprecated-react-native-prop-types "^2.3.0"
+    react-native-gesture-handler "^2.4.0"
+    react-native-orientation-locker "^1.4.0"
+    react-native-reanimated "^2.9.1"
+    react-native-system-setting "^1.7.6"
+
+react-native-video-cache@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/react-native-video-cache/-/react-native-video-cache-2.7.3.tgz#b6dc456def5972cfcd2f22135a82e3be2e5c7762"
+  integrity sha512-207f0YcLF3b7Vzt2XilOlLm8TJxKrZSYOrTG2qSreRYnxlRP475La7303OjxEtzV4madvWZUtKnAhSy5gk1hRw==
 
 react-native-video-player@^0.12.0:
   version "0.12.0"

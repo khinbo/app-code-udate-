@@ -4,13 +4,20 @@ export const videoRef = React.createRef();
 
 const getStatusAsync = () => videoRef?.current?.getStatusAsync();
 
-const unloadAsync = () => videoRef?.current?.unloadAsync();
+const unloadAsync = () => stopAsync();
 
-const stopAsync = () => videoRef?.current?.stop();
+const stopAsync = () => {
+  videoRef?.current?.setNativeProps({paused: false});
+  seek(0);
+};
 
 const loadAsync = () => videoRef?.current?.loadAsync();
 
-const playAsync = () => videoRef?.current?.resume();
+const playAsync = () => videoRef?.current?.setNativeProps({paused: false});
+
+const seek = val => videoRef?.current?.seek(val);
+
+const seekTo = (val, opt) => videoRef?.current?.seek(val, opt);
 
 export default {
   getStatusAsync,
@@ -18,4 +25,6 @@ export default {
   stopAsync,
   loadAsync,
   playAsync,
+  seek,
+  seekTo,
 };
