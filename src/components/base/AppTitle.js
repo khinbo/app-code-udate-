@@ -17,7 +17,7 @@ export const AppTitle = ({title}) => {
           ...FONTS.h2,
           fontSize: 18,
           lineHeight: 24,
-          color: COLORS.primarydarker,
+          color: COLORS.primarylighter,
         }}>
         {title}
       </Text>

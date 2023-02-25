@@ -115,7 +115,7 @@ const fr = {
   noRecordFound: 'Aucun Enregistrement Trouvé..',
   recentlyWatched: 'Regardé récemment',
   justForYou: "Vos centres d'intérêts",
-  popularVideosIn: 'Vidéos populaires dans',
+  popularVideosIn: 'Vidéos populaires',
   contentsYouMightBeInterested: 'Contenu qui pourrait vous intéresser',
   onDemand: 'A LA DEMANDE',
   recording: 'ENREGISTREMENT',

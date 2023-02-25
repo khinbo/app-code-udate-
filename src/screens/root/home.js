@@ -144,7 +144,8 @@ export const Home = () => {
           {popular.length ? (
             <View style={styles.movieContainer}>
               <AppTitle
-                title={`${translate('popularVideosIn')} ${user.country?.name}`}
+                //  ${user.country?.name}
+                title={`${translate('popularVideosIn')}`}
               />
               <FlatList
                 horizontal

@@ -105,7 +105,7 @@ const SwitchLangButtons = ({onPress, activeLang}) => {
             fontSize: 12,
             color: activeLang === 'en' ? COLORS.white : COLORS.black,
           }}>
-          {activeLang === 'en' ? 'English' : 'Anglaise'}
+          {activeLang === 'en' ? 'English' : 'Anglais'}
         </Text>
       </Pressable>
       <Pressable

@@ -46,7 +46,7 @@ export const SignupOtpScreen = ({navigation, route}) => {
               ...FONTS.h3,
               marginBottom: 20,
             }}>
-            we sent your email with 6 digit code
+            we sent your email / Spams* with 6 digit code
           </Text>
           <AppForm
             initialValues={{
