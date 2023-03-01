@@ -15,6 +15,8 @@ const completeProfile = payload => client.post('/complete_profile', payload);
 const loginWithSocialAccount = (params, payload) =>
   client.post('/login_with_social_account/' + params, payload);
 
+const appleLogin = payload => client.post('/appleLogin/', payload);
+
 const getCountries = () => client.get('/get_countries');
 
 const me = () => client.get('/me');
@@ -73,6 +75,7 @@ export default {
   resetPassword,
   completeProfile,
   loginWithSocialAccount,
+  appleLogin,
   getCountries,
   me,
   getGenres,

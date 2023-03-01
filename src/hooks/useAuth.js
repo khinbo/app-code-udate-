@@ -1,5 +1,7 @@
+/* eslint-disable curly */
 import {useCallback, useContext, useEffect, useState} from 'react';
 import {Keyboard} from 'react-native';
+import {appleAuth} from '@invertase/react-native-apple-authentication';
 import {
   GraphRequest,
   GraphRequestManager,
@@ -15,6 +17,7 @@ import localStorage from '../server/localStorage';
 import toast from '../toast';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
+import helpers from '../constants/helpers';
 
 export default useAuth = () => {
   const navigation = useNavigation();
@@ -24,10 +27,6 @@ export default useAuth = () => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    // GoogleSignin.configure({
-      // webClientId: '340401308963-0vbvsk51a0pn5amrmntkatd2n1de8dg9.apps.googleusercontent.com',
-      // offlineAccess: true
-  // });
     GoogleSignin.configure({});
   }, []);
 
@@ -120,6 +119,40 @@ export default useAuth = () => {
     });
   }, []);
 
+  const loginWithApple = async () => {
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+    });
+    const {user, email, fullName, authorizationCode} = appleAuthRequestResponse;
+
+    const name = fullName.givenName ? fullName.givenName : fullName.middleName;
+
+    const payload = {
+      identityToken: user,
+      email,
+      name,
+    };
+
+    server.appleLogin(payload).then(resp => {
+      setLoading(false);
+      console.log(resp.data);
+      if (!resp.ok) {
+        if (resp.data?.message === 'pending') {
+          localStorage.saveToken(resp.data?.access_token).then(() => {
+            if (resp.data.type === 'profile') {
+              navigation.navigate('verified', {
+                user: resp.data.user,
+              });
+            } else {
+              navigation.navigate('interests');
+            }
+          });
+        } else toast.show(resp.data?.message);
+      } else updateUser(resp.data.access_token, resp.data.user);
+    });
+  };
+
   const completeInterestStatus = useCallback(values => {
     Keyboard.dismiss();
     const payload = {
@@ -147,15 +180,13 @@ export default useAuth = () => {
     });
   }, []);
 
- 
   const loginWithGoogle = useCallback(async () => {
-    
     try {
       await GoogleSignin.signOut();
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
 
-      console.log("Before sign in",userInfo);
+      console.log('Before sign in', userInfo);
       const {
         user: {id, name, email, photo},
       } = userInfo;
@@ -169,8 +200,8 @@ export default useAuth = () => {
         });
       } else {
         toast.show(JSON.stringify(error));
-        console.log("Error", error);
-        setLoading(false)
+        console.log('Error', error);
+        setLoading(false);
       }
     }
   }, []);
@@ -266,6 +297,7 @@ export default useAuth = () => {
     getCountries,
     loginWithFacebook,
     loginWithGoogle,
+    loginWithApple,
     completeInterestStatus,
     changePassword,
     initialLoading,

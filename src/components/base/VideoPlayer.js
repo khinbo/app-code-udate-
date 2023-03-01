@@ -15,7 +15,6 @@ import {
   hideNavigationBar,
   showNavigationBar,
 } from 'react-native-navigation-bar-color';
-import convertToCache from 'react-native-video-cache';
 import MediaControls, {PLAYER_STATES} from 'react-native-video-basic-controls';
 import video, {videoRef} from '../../refs/video';
 import {Appicon} from './AppIcon';
@@ -23,9 +22,6 @@ import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import icons from '../../constants/icons';
 
 const {height, width} = Dimensions.get('window');
-
-const playerWidth = width;
-const PlayerHeight = width / 1.7777777;
 
 const VideoPlayer = ({
   thumbnailUrl,
@@ -45,6 +41,10 @@ const VideoPlayer = ({
   const [playerState, setPlayerState] = useState(PLAYER_STATES.PAUSED);
   const [fullscreen, setFullscreen] = useState(false);
   const [resizeMode, setResizeMode] = useState('contain');
+  const [playerWidth, setPlayerWidth] = useState(width);
+  const [PlayerHeight, setPlayerHeight] = useState(width / 1.7777777);
+
+  const viewRef = useRef();
 
   const onPaused = pState => {
     setPaused(!paused);
@@ -65,21 +65,44 @@ const VideoPlayer = ({
   const rotateScreen = isFullMode => {
     setFullscreen(isFullMode);
     if (isFullMode) {
+      setPlayerWidth(SIZES.height);
+      setPlayerHeight(SIZES.width);
+
       Orientation.lockToLandscapeLeft();
       hideNavigationBar();
     } else {
+      setPlayerWidth(SIZES.width);
+      setPlayerHeight(SIZES.width / 1.7777777);
       Orientation.lockToPortrait();
       showNavigationBar();
     }
   };
-
-  console.log('ttt');
+  const verticalFullScreen = () => {
+    const isNotFullMode =
+      playerWidth === width && PlayerHeight === SIZES.width / 1.7777777;
+    if (fullscreen) {
+      setFullscreen(false);
+      setPlayerWidth(SIZES.width);
+      setPlayerHeight(SIZES.height * 1.1);
+      hideNavigationBar();
+    } else if (isNotFullMode) {
+      setPlayerWidth(SIZES.width);
+      setPlayerHeight(SIZES.height * 1.1);
+      hideNavigationBar();
+    } else {
+      setPlayerWidth(SIZES.width);
+      setPlayerHeight(SIZES.width / 1.7777777);
+      showNavigationBar();
+    }
+    Orientation.lockToPortrait();
+  };
 
   return (
     <View
+      ref={viewRef}
       style={{
-        width: fullscreen ? SIZES.height : playerWidth,
-        height: fullscreen ? SIZES.width : PlayerHeight,
+        width: playerWidth,
+        height: PlayerHeight,
       }}>
       <Video
         ref={videoRef}
@@ -198,12 +221,7 @@ const VideoPlayer = ({
                   alignItems: 'center',
                   justifyContent: 'flex-end',
                 }}>
-                <TouchableOpacity
-                  onPress={() =>
-                    setResizeMode(
-                      resizeMode === 'contain' ? 'cover' : 'contain',
-                    )
-                  }>
+                <TouchableOpacity onPress={verticalFullScreen}>
                   <Appicon icon={icons.expend} color={COLORS.white} />
                 </TouchableOpacity>
               </View>

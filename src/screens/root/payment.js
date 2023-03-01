@@ -1,8 +1,9 @@
+/* eslint-disable curly */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useEffect, useState} from 'react';
 import {View, Alert, StyleSheet} from 'react-native';
 import CreditCard from 'react-native-credit-card';
-import {CardField, useConfirmPayment} from '@stripe/stripe-react-native';
+import {CardField, useStripe} from '@stripe/stripe-react-native';
 import {AppButton, AppHeader, BaseView} from '../../components';
 import {COLORS} from '../../constants/theme';
 import server from '../../server/index';
@@ -16,6 +17,7 @@ export const PaymentScreen = ({navigation, route}) => {
   const [card, setCard] = useState(null);
   const [key, setKey] = useState(null);
   const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useImmer({
     type: '',
     focused: '',
@@ -25,7 +27,8 @@ export const PaymentScreen = ({navigation, route}) => {
     cvc: '',
   });
 
-  const {confirmPayment, loading} = useConfirmPayment();
+  const {confirmPayment} = useStripe();
+
   const gettingClientSecret = async () => {
     setServerLoading(true);
     const response = await server.getClientSecret({
@@ -47,14 +50,12 @@ export const PaymentScreen = ({navigation, route}) => {
     if (!card) return;
     if (!card.complete) return;
     if (!key) return alert('stripe error');
-    const billingDetails = {
-      name: user.name,
-      email: user.email,
-    };
+
+    setLoading(true);
     const {paymentIntent, error} = await confirmPayment(key, {
-      type: 'Card',
-      billingDetails,
+      paymentMethodType: 'Card',
     });
+    setLoading(false);
 
     if (error) {
       return Alert.alert(

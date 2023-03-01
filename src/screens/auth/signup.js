@@ -96,6 +96,7 @@ export const SignupScreen = ({navigation}) => {
   const {
     loginWithFacebook,
     loginWithGoogle,
+    loginWithApple,
     getCountries,
     countries,
     initialLoading,
@@ -163,6 +164,13 @@ export const SignupScreen = ({navigation}) => {
                   loading={loading}
                   icon={icons.google}
                 />
+                {Platform.OS === 'ios' && (
+                  <SocialButton
+                    onPress={loginWithApple}
+                    loading={loading}
+                    icon={icons.audio}
+                  />
+                )}
               </View>
               <View style={styles.flexRow}>
                 <View style={{flex: 1, height: 1, backgroundColor: 'black'}} />
@@ -232,11 +240,7 @@ export const SignupScreen = ({navigation}) => {
                     {translate('byClickingOnOfTheButtons')}{' '}
                     <Text
                       style={{color: COLORS.primary}}
-                      onPress={() =>
-                        openURL(
-                          'https://www.privacypolicies.com/live/35e59387-5b1a-4bb8-b7bf-da6a9c030b36',
-                        )
-                      }>
+                      onPress={() => openURL('https://khinbo.com/terms')}>
                       {translate('terms')}
                     </Text>
                   </Text>
@@ -244,11 +248,7 @@ export const SignupScreen = ({navigation}) => {
                     {translate('pleaseRead')}{' '}
                     <Text
                       style={{color: COLORS.primary}}
-                      onPress={() =>
-                        openURL(
-                          'https://www.privacypolicies.com/live/35e59387-5b1a-4bb8-b7bf-da6a9c030b36',
-                        )
-                      }>
+                      onPress={() => openURL('https://khinbo.com/privacy')}>
                       {translate('privacyPilicy')}
                     </Text>{' '}
                     {translate('toKnowWeUseData')}
