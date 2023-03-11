@@ -144,91 +144,89 @@ const VideoPlayer = ({
         }}
       />
 
-      {Platform.OS === 'android' ? (
-        <MediaControls
-          bufferValue={bufferValue}
-          duration={duration}
-          isLoading={isLoading}
-          mainColor="red"
-          // bufferColor=""
-          sliderStyle={{
-            thumbStyle: {
-              width: 15,
-              height: 15,
-            },
-            trackStyle: {
-              height: 2,
-            },
-            containerStyle: {},
-          }}
-          fullScreenIconP={<Appicon icon={icons.full} color={COLORS.white} />}
-          fullScreenIconL={<Appicon icon={icons.full} color={COLORS.white} />}
-          onPaused={itm => onPaused(itm)}
-          onReplay={() => onReplay()}
-          onSeek={itm => onSeek(itm)}
-          onSeeking={itm => onSeeking(itm)}
-          playerState={playerState}
-          progress={currentTime}
-          onSkipFor={() => video.seekTo(currentTime + 5, 30)}
-          onSkipBack={() => video.seekTo(currentTime - 5, 30)}
-          showVolume={true}
-          showBrightness={false}
-          sliderType="Slider"
-          toolbarStyle={{}}
-          // VSliderOuterStyles={{marginHorizontal: 40}}
-          // VSliderInnerStyles={{}}
-          onFullScreen={() => {
-            rotateScreen(!fullscreen);
-          }}
+      <MediaControls
+        bufferValue={bufferValue}
+        duration={duration}
+        isLoading={isLoading}
+        mainColor="red"
+        // bufferColor=""
+        sliderStyle={{
+          thumbStyle: {
+            width: 15,
+            height: 15,
+          },
+          trackStyle: {
+            height: 2,
+          },
+          containerStyle: {},
+        }}
+        fullScreenIconP={<Appicon icon={icons.full} color={COLORS.white} />}
+        fullScreenIconL={<Appicon icon={icons.full} color={COLORS.white} />}
+        onPaused={itm => onPaused(itm)}
+        onReplay={() => onReplay()}
+        onSeek={itm => onSeek(itm)}
+        onSeeking={itm => onSeeking(itm)}
+        playerState={playerState}
+        progress={currentTime}
+        onSkipFor={() => video.seekTo(currentTime + 5, 30)}
+        onSkipBack={() => video.seekTo(currentTime - 5, 30)}
+        showVolume={true}
+        showBrightness={false}
+        sliderType="Slider"
+        toolbarStyle={{}}
+        // VSliderOuterStyles={{marginHorizontal: 40}}
+        // VSliderInnerStyles={{}}
+        onFullScreen={() => {
+          rotateScreen(!fullscreen);
+        }}
 
-          // sliderScale
-        >
-          <MediaControls.Toolbar>
+        // sliderScale
+      >
+        <MediaControls.Toolbar>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: 'rgba(0,0,0,0.01)',
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              left: 0,
+              zIndex: 99,
+              justifyContent: 'space-between',
+            }}>
+            {isBack ? (
+              <TouchableOpacity activeOpacity={0.7} onPress={backAction}>
+                <Appicon icon={icons.back} color={COLORS.white} />
+              </TouchableOpacity>
+            ) : null}
+            {!fullscreen && (
+              <Text
+                numberOfLines={1}
+                style={{
+                  ...FONTS.h4,
+                  paddingHorizontal: 10,
+                  fontSize: 12,
+                  color: COLORS.white,
+                  flex: 1,
+                }}>
+                {artist}
+              </Text>
+            )}
+
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                backgroundColor: 'rgba(0,0,0,0.01)',
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                left: 0,
-                zIndex: 99,
-                justifyContent: 'space-between',
+                justifyContent: 'flex-end',
               }}>
-              {isBack ? (
-                <TouchableOpacity activeOpacity={0.7} onPress={backAction}>
-                  <Appicon icon={icons.back} color={COLORS.white} />
-                </TouchableOpacity>
-              ) : null}
-              {!fullscreen && (
-                <Text
-                  numberOfLines={1}
-                  style={{
-                    ...FONTS.h4,
-                    paddingHorizontal: 10,
-                    fontSize: 12,
-                    color: COLORS.white,
-                    flex: 1,
-                  }}>
-                  {artist}
-                </Text>
-              )}
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'flex-end',
-                }}>
-                <TouchableOpacity onPress={verticalFullScreen}>
-                  <Appicon icon={icons.expend} color={COLORS.white} />
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity onPress={verticalFullScreen}>
+                <Appicon icon={icons.expend} color={COLORS.white} />
+              </TouchableOpacity>
             </View>
-          </MediaControls.Toolbar>
-        </MediaControls>
-      ) : null}
+          </View>
+        </MediaControls.Toolbar>
+      </MediaControls>
     </View>
   );
 };
