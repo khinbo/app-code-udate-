@@ -1,4 +1,4 @@
-package com.karimapps.khinbo;
+package com.karimapps.Khinbo.app;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
