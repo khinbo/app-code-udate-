@@ -1,8 +1,9 @@
 /* eslint-disable curly */
 import {useCallback, useContext, useEffect, useState} from 'react';
-import {Keyboard} from 'react-native';
+import {Keyboard, Platform} from 'react-native';
 import {appleAuth} from '@invertase/react-native-apple-authentication';
 import {
+  AccessToken,
   GraphRequest,
   GraphRequestManager,
   LoginManager,
@@ -206,49 +207,64 @@ export default useAuth = () => {
     }
   }, []);
 
-  const loginWithFacebook = useCallback(() => {
-    LoginManager.logInWithPermissions(['email', 'public_profile']).then(
-      function (result) {
-        if (result.isCancelled) {
-        }
-        if (
-          result.declinedPermissions &&
-          result.declinedPermissions.includes('email')
-        )
-          toast.register_failed('No permission for email , Email is required.');
-        else {
-          const infoRequest = new GraphRequest(
-            '/me?fields=email,name,picture',
-            null,
-            (error, user) => {
-              if (error) {
-                console.log(error);
-                toast.show(JSON.stringify(error));
-              } else {
-                const {
-                  name,
-                  email,
-                  id,
-                  picture: {
-                    data: {url},
-                  },
-                } = user;
-                loginWithSocialAccount('facebook', {
-                  id,
-                  name,
-                  email,
-                  photo: url,
-                });
-              }
-            },
-          );
+  const loginWithFacebook = useCallback(async () => {
+    if (Platform.OS === 'android') {
+      LoginManager.setLoginBehavior('web_only');
+    }
+    try {
+      const result = await LoginManager.logInWithPermissions([
+        'email',
+        'public_profile',
+        'user_friends',
+      ]);
+      if (result.isCancelled) {
+        return;
+      }
+      const token = await AccessToken.getCurrentAccessToken();
+      if (
+        result.declinedPermissions &&
+        result.declinedPermissions.includes('email')
+      )
+        return toast.show('No permission for email , Email is required.');
+      const infoRequest = new GraphRequest(
+        '/me?fields=email,name,picture',
+        null,
+        (error, user) => {
+          if (error) {
+            console.log(error);
+          } else {
+            const {
+              name,
+              email,
+              id,
+              picture: {
+                data: {url},
+              },
+            } = user;
+            loginWithSocialAccount('facebook', {
+              id,
+              name,
+              email,
+              photo: url,
+            });
+          }
+        },
+      );
+      if (token && !token.expired) {
+        new GraphRequestManager().addRequest(infoRequest).start();
+      } else {
+        const refreshedToken =
+          await AccessToken.refreshCurrentAccessTokenAsync();
+        if (refreshedToken) {
           new GraphRequestManager().addRequest(infoRequest).start();
+        } else {
+          toast.show('Failed to refresh access token.');
         }
-      },
-      function (error) {
-        console.log(error);
-      },
-    );
+      }
+    } catch (error) {
+      console.log(error);
+      toast.show(JSON.stringify(error));
+    }
   }, []);
 
   function loginWithSocialAccount(provider, payload) {

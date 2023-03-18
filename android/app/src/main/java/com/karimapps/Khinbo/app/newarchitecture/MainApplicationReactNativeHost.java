@@ -1,4 +1,4 @@
-package com.karimapps.khinbo.newarchitecture;
+package com.karimapps.Khinbo.app.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.karimapps.khinbo.BuildConfig;
-import com.karimapps.khinbo.newarchitecture.components.MainComponentsRegistry;
-import com.karimapps.khinbo.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.karimapps.Khinbo.app.BuildConfig;
+import com.karimapps.Khinbo.app.newarchitecture.components.MainComponentsRegistry;
+import com.karimapps.Khinbo.app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

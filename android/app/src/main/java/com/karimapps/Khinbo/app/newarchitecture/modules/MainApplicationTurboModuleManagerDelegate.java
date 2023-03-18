@@ -1,4 +1,4 @@
-package com.karimapps.khinbo.newarchitecture.modules;
+package com.karimapps.Khinbo.app.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
