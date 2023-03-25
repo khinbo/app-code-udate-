@@ -10,4 +10,7 @@
    <FileRef
       location = "group:Khinbo.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:khinbo.xcodeproj">
+   </FileRef>
 </Workspace>

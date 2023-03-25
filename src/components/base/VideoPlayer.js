@@ -65,7 +65,12 @@ const VideoPlayer = ({
   const rotateScreen = isFullMode => {
     setFullscreen(isFullMode);
     if (isFullMode) {
-      setPlayerWidth(SIZES.height);
+      setPlayerWidth(
+        Platform.select({
+          android: SIZES.height,
+          ios: SIZES.height - 40,
+        }),
+      );
       setPlayerHeight(SIZES.width);
 
       Orientation.lockToLandscapeLeft();

@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import * as Yup from 'yup';
 import {
@@ -80,33 +81,35 @@ export const LoginScreen = ({navigation}) => {
                 />
 
                 {/* sign in with social accounts  */}
-                <View style={styles.socialContainer}>
-                  <View style={styles.flexRow}>
-                    <View
-                      style={{flex: 1, height: 1, backgroundColor: 'black'}}
-                    />
-                    <View>
-                      <Text style={styles.socialTitle}>
-                        {translate('orContinueWith')}
-                      </Text>
+                {Platform.OS === 'android' ? (
+                  <View style={styles.socialContainer}>
+                    <View style={styles.flexRow}>
+                      <View
+                        style={{flex: 1, height: 1, backgroundColor: 'black'}}
+                      />
+                      <View>
+                        <Text style={styles.socialTitle}>
+                          {translate('orContinueWith')}
+                        </Text>
+                      </View>
+                      <View
+                        style={{flex: 1, height: 1, backgroundColor: 'black'}}
+                      />
                     </View>
-                    <View
-                      style={{flex: 1, height: 1, backgroundColor: 'black'}}
-                    />
+                    <View style={styles.rowAround}>
+                      <SocialButton
+                        onPress={loginWithFacebook}
+                        loading={loading}
+                        icon={icons.facebook}
+                      />
+                      <SocialButton
+                        onPress={loginWithGoogle}
+                        loading={loading}
+                        icon={icons.google}
+                      />
+                    </View>
                   </View>
-                  <View style={styles.rowAround}>
-                    <SocialButton
-                      onPress={loginWithFacebook}
-                      loading={loading}
-                      icon={icons.facebook}
-                    />
-                    <SocialButton
-                      onPress={loginWithGoogle}
-                      loading={loading}
-                      icon={icons.google}
-                    />
-                  </View>
-                </View>
+                ) : null}
                 <TouchableOpacity
                   style={{alignSelf: 'center', marginTop: 5}}
                   onPress={() => navigation.navigate('forgetPassword')}>

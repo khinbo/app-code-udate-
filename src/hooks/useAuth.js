@@ -2,6 +2,7 @@
 import {useCallback, useContext, useEffect, useState} from 'react';
 import {Keyboard, Platform} from 'react-native';
 import {appleAuth} from '@invertase/react-native-apple-authentication';
+import jwt_decode from 'jwt-decode';
 import {
   AccessToken,
   GraphRequest,
@@ -18,7 +19,6 @@ import localStorage from '../server/localStorage';
 import toast from '../toast';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
-import helpers from '../constants/helpers';
 
 export default useAuth = () => {
   const navigation = useNavigation();
@@ -129,15 +129,25 @@ export default useAuth = () => {
 
     const name = fullName.givenName ? fullName.givenName : fullName.middleName;
 
-    const payload = {
-      identityToken: user,
-      email,
-      name,
-    };
+    let payload = null;
+
+    if (email != null) {
+      payload = {
+        identityToken: user,
+        email,
+        name,
+      };
+    } else {
+      const response = jwt_decode(appleAuthRequestResponse.identityToken);
+      payload = {
+        identityToken: user,
+        email: response.email,
+        name,
+      };
+    }
 
     server.appleLogin(payload).then(resp => {
       setLoading(false);
-      console.log(resp.data);
       if (!resp.ok) {
         if (resp.data?.message === 'pending') {
           localStorage.saveToken(resp.data?.access_token).then(() => {
@@ -183,23 +193,45 @@ export default useAuth = () => {
 
   const loginWithGoogle = useCallback(async () => {
     try {
-      await GoogleSignin.signOut();
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      const userInfo = await GoogleSignin.signInSilently();
 
-      console.log('Before sign in', userInfo);
-      const {
-        user: {id, name, email, photo},
-      } = userInfo;
-      loginWithSocialAccount('google', {id, name, email, photo});
+      if (userInfo) {
+        console.log('Before sign in', userInfo);
+        const {
+          user: {id, name, email, photo},
+        } = userInfo;
+        loginWithSocialAccount('google', {id, name, email, photo});
+      } else {
+        // User is not signed in or their token has expired
+        try {
+          const userInfo = await GoogleSignin.signIn();
+          console.log('After sign in', userInfo);
+          const {
+            user: {id, name, email, photo},
+          } = userInfo;
+          loginWithSocialAccount('google', {id, name, email, photo});
+        } catch (error) {
+          if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+            // User needs to sign in again, display a message to prompt them to sign in
+            toast.show('User needs to sign in again');
+          } else {
+            // Handle other errors
+            toast.show(JSON.stringify(error));
+            console.log('Error', error);
+            setLoading(false);
+          }
+        }
+      }
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // Handle sign-in cancelled error
       } else if (error.code === statusCodes.IN_PROGRESS) {
+        // Handle sign-in already in progress error
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        await GoogleSignin.hasPlayServices({
-          showPlayServicesUpdateDialog: true,
-        });
+        // Handle Google Play Services not available error
       } else {
+        // Handle other errors
         toast.show(JSON.stringify(error));
         console.log('Error', error);
         setLoading(false);
@@ -208,9 +240,7 @@ export default useAuth = () => {
   }, []);
 
   const loginWithFacebook = useCallback(async () => {
-    if (Platform.OS === 'android') {
-      LoginManager.setLoginBehavior('web_only');
-    }
+    LoginManager.setLoginBehavior('web_only');
     try {
       const result = await LoginManager.logInWithPermissions([
         'email',

@@ -2,6 +2,8 @@
 #import <Firebase.h>
 #import <UserNotifications/UserNotifications.h>
 #import <RNCPushNotificationIOS.h>
+#import "Orientation.h"
+
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -213,5 +215,9 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 
 #endif
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
+}
 
 @end

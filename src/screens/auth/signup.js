@@ -152,36 +152,42 @@ export const SignupScreen = ({navigation}) => {
             </View>
 
             {/* sign in with social accounts  */}
-            <View style={styles.socialContainer}>
-              <View style={styles.rowAround}>
-                <SocialButton
-                  onPress={loginWithFacebook}
-                  loading={loading}
-                  icon={icons.facebook}
-                />
-                <SocialButton
-                  onPress={loginWithGoogle}
-                  loading={loading}
-                  icon={icons.google}
-                />
-                {Platform.OS === 'ios' && (
+            {Platform.OS === 'android' ? (
+              <View style={styles.socialContainer}>
+                <View style={styles.rowAround}>
                   <SocialButton
-                    onPress={loginWithApple}
+                    onPress={loginWithFacebook}
                     loading={loading}
-                    icon={icons.audio}
+                    icon={icons.facebook}
                   />
-                )}
-              </View>
-              <View style={styles.flexRow}>
-                <View style={{flex: 1, height: 1, backgroundColor: 'black'}} />
-                <View>
-                  <Text style={styles.socialTitle}>
-                    {translate('orContinueWith')}
-                  </Text>
+                  <SocialButton
+                    onPress={loginWithGoogle}
+                    loading={loading}
+                    icon={icons.google}
+                  />
+                  {Platform.OS === 'ios' && (
+                    <SocialButton
+                      onPress={loginWithApple}
+                      loading={loading}
+                      icon={icons.audio}
+                    />
+                  )}
                 </View>
-                <View style={{flex: 1, height: 1, backgroundColor: 'black'}} />
+                <View style={styles.flexRow}>
+                  <View
+                    style={{flex: 1, height: 1, backgroundColor: 'black'}}
+                  />
+                  <View>
+                    <Text style={styles.socialTitle}>
+                      {translate('orContinueWith')}
+                    </Text>
+                  </View>
+                  <View
+                    style={{flex: 1, height: 1, backgroundColor: 'black'}}
+                  />
+                </View>
               </View>
-            </View>
+            ) : null}
 
             <AppForm
               initialValues={{
