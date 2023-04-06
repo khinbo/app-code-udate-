@@ -61,6 +61,10 @@ export const SignupScreen = ({navigation}) => {
       label: translate('nonBinary'),
       accessibilityLabel: '3',
     },
+    {
+      label: translate('optional'),
+      accessibilityLabel: '4',
+    },
   ];
 
   const openURL = url => {
@@ -152,7 +156,7 @@ export const SignupScreen = ({navigation}) => {
             </View>
 
             {/* sign in with social accounts  */}
-            {Platform.OS === 'android' ? (
+            {/* {Platform.OS === 'android' ? (
               <View style={styles.socialContainer}>
                 <View style={styles.rowAround}>
                   <SocialButton
@@ -187,7 +191,7 @@ export const SignupScreen = ({navigation}) => {
                   />
                 </View>
               </View>
-            ) : null}
+            ) : null} */}
 
             <AppForm
               initialValues={{
@@ -196,8 +200,8 @@ export const SignupScreen = ({navigation}) => {
                 password: '',
                 password_confirmation: '',
                 dob: new Date(2000, 10, 20),
-                gender: '1',
-                country: '',
+                gender: '4',
+                country: 9,
                 device: Platform.OS,
               }}
               validationSchema={validationSchema}

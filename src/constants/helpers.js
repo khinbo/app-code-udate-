@@ -5,7 +5,13 @@ export const FREE = 'free';
 export const SUBSCRIBE = 'subscribe';
 
 const getGender = val =>
-  val == 1 ? 'Male' : val === 2 ? 'Female' : 'Non-binary';
+  val == 1
+    ? 'Male'
+    : val === 2
+    ? 'Female'
+    : val == 4
+    ? 'optional'
+    : 'Non-binary';
 
 const getImage = img =>
   img

@@ -67,6 +67,8 @@ const getNotifications = () => client.get('/get_notifications');
 
 const changePassword = payload => client.post('/change_password', payload);
 
+const deleteAccount = () => client.delete('/delete/account');
+
 export default {
   signup,
   signin,
@@ -98,4 +100,5 @@ export default {
   updateToken,
   getNotifications,
   changePassword,
+  deleteAccount,
 };

@@ -54,6 +54,12 @@ export const PaymentScreen = ({navigation, route}) => {
     setLoading(true);
     const {paymentIntent, error} = await confirmPayment(key, {
       paymentMethodType: 'Card',
+      paymentMethodData: {
+        billingDetails: {
+          name: user?.name,
+          email: user?.email,
+        },
+      },
     });
     setLoading(false);
 
@@ -87,7 +93,7 @@ export const PaymentScreen = ({navigation, route}) => {
         overlayLoading={load}>
         <AppHeader title={'Payment'} backButton />
         <View style={{flex: 1, paddingHorizontal: 15}}>
-          <View
+          {/* <View
             style={{
               height: 180,
               alignItems: 'center',
@@ -105,12 +111,9 @@ export const PaymentScreen = ({navigation, route}) => {
               expiry={state.expiry}
               cvc={state.cvc}
             />
-          </View>
+          </View> */}
           <CardField
             dangerouslyGetFullCardDetails
-            placeholder={{
-              number: '4242 4242 4242 4242',
-            }}
             postalCodeEnabled={false}
             cardStyle={{
               backgroundColor: '#FFFFFF',
@@ -163,7 +166,7 @@ export const PaymentScreen = ({navigation, route}) => {
           />
           <AppButton
             disabled={!key}
-            title={'Pay'}
+            title={`Pay €${plan?.price}`}
             loading={loading}
             onPress={onPayPress}
             otherStyles={{

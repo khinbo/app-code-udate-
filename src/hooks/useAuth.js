@@ -19,6 +19,7 @@ import localStorage from '../server/localStorage';
 import toast from '../toast';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
+import helpers from '../constants/helpers';
 
 export default useAuth = () => {
   const navigation = useNavigation();
@@ -336,6 +337,15 @@ export default useAuth = () => {
     });
   }
 
+  const deleteAccount = useCallback(async () => {
+    setLoading(true);
+    const response = await server.deleteAccount();
+    if (!response.ok) {
+      return toast.show(response.data?.message);
+    }
+    trigger.signout();
+  }, []);
+
   return {
     signin,
     signup,
@@ -346,6 +356,7 @@ export default useAuth = () => {
     loginWithApple,
     completeInterestStatus,
     changePassword,
+    deleteAccount,
     initialLoading,
     loading,
     countries,

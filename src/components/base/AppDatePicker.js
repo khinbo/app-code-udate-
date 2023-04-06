@@ -1,31 +1,33 @@
-import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import moment from "moment";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { FONTS } from "../../constants/theme";
-import icons from "../../constants/icons";
+import React, {useState} from 'react';
+import {View, Text, Image, TouchableOpacity, Platform} from 'react-native';
+import moment from 'moment';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import {FONTS} from '../../constants/theme';
+import icons from '../../constants/icons';
 
-export const AppDatePicker = ({ title, value, setDate, ...otherPorps }) => {
-  const [mode, setMode] = useState("date");
+const dateToCheck = moment('2000-11-20');
+
+export const AppDatePicker = ({title, value, setDate, ...otherPorps}) => {
+  const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
   const onChange = (_, selectedDate) => {
     const currentDate = selectedDate || value;
-    setShow(Platform.OS === "ios");
+    setShow(Platform.OS === 'ios');
     setDate(currentDate);
   };
 
-  const showMode = (currentMode) => {
+  const showMode = currentMode => {
     setShow(true);
     setMode(currentMode);
   };
 
   const showDatepicker = () => {
-    showMode("date");
+    showMode('date');
   };
 
   const showTimepicker = () => {
-    showMode("time");
+    showMode('time');
   };
 
   return (
@@ -33,42 +35,39 @@ export const AppDatePicker = ({ title, value, setDate, ...otherPorps }) => {
       <TouchableOpacity
         onPress={showDatepicker}
         style={{
-          width: "100%",
-          flexDirection: "row",
-          backgroundColor: "white",
+          width: '100%',
+          flexDirection: 'row',
+          backgroundColor: 'white',
           height: 50,
           borderWidth: 1,
-          borderColor: "gray",
+          borderColor: 'gray',
           borderRadius: 5,
           marginTop: 15,
-          alignItems: "center",
-        }}
-      >
+          alignItems: 'center',
+        }}>
         {title && (
           <View
             style={{
-              backgroundColor: "white",
-              position: "absolute",
+              backgroundColor: 'white',
+              position: 'absolute',
               top: -8,
               left: 65,
               zIndex: 99,
               paddingHorizontal: 0,
               paddingVertical: 0,
-            }}
-          >
+            }}>
             <Text
               numberOfLines={1}
               style={{
-                color: "rgba(0,0,0,0.6)",
-                textTransform: "uppercase",
-                fontWeight: "bold",
+                color: 'rgba(0,0,0,0.6)',
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
                 paddingVertical: 0,
                 paddingHorizontal: 5,
                 ...FONTS.body4,
                 fontSize: 11,
                 lineHeight: 14,
-              }}
-            >
+              }}>
               {title}
             </Text>
           </View>
@@ -76,28 +75,28 @@ export const AppDatePicker = ({ title, value, setDate, ...otherPorps }) => {
         <View
           style={{
             paddingHorizontal: 20,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Image
             source={icons.calender}
             style={{
               height: 15,
               width: 15,
-              tintColor: "black",
+              tintColor: 'black',
             }}
           />
         </View>
         <Text
           style={{
             ...FONTS.body3,
-            fontWeight: "bold",
-            color: "rgba(0,0,0,0.9)",
+            fontWeight: 'bold',
+            color: 'rgba(0,0,0,0.9)',
             letterSpacing: 3,
-          }}
-        >
-          {moment(value).format("DD-MM-YYYY")}
+          }}>
+          {moment(value).isSame(dateToCheck)
+            ? ''
+            : moment(value).format('DD-MM-YYYY')}
         </Text>
       </TouchableOpacity>
 

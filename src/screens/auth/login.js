@@ -81,7 +81,7 @@ export const LoginScreen = ({navigation}) => {
                 />
 
                 {/* sign in with social accounts  */}
-                {Platform.OS === 'android' ? (
+                {/* {Platform.OS === 'android' ? (
                   <View style={styles.socialContainer}>
                     <View style={styles.flexRow}>
                       <View
@@ -109,7 +109,7 @@ export const LoginScreen = ({navigation}) => {
                       />
                     </View>
                   </View>
-                ) : null}
+                ) : null} */}
                 <TouchableOpacity
                   style={{alignSelf: 'center', marginTop: 5}}
                   onPress={() => navigation.navigate('forgetPassword')}>

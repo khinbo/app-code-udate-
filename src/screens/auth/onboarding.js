@@ -144,7 +144,7 @@ export const Onboarding = ({navigation}) => {
         }}>
         {renderDots()}
         <AppButton
-          title="Sign up"
+          title="Continue"
           onPress={() => navigation.navigate('signup')}
         />
       </View>

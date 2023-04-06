@@ -1,15 +1,37 @@
 import React, {useContext} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, Alert} from 'react-native';
 import AuthContext from '../../store/AuthContext';
-import {AppHeader, BaseView, InfoRow, PackageInfo} from '../../components';
-import images from '../../constants/images';
+import {AppButton, AppHeader, BaseView, InfoRow} from '../../components';
 import {COLORS, FONTS} from '../../constants/theme';
 import moment from 'moment';
 import helpers from '../../constants/helpers';
-import icons from '../../constants/icons';
+import useAuth from '../../hooks/useAuth';
+import {translate} from '../../I18n';
 
 export const ProfileScreen = () => {
+  const {loading, deleteAccount} = useAuth();
   const {user} = useContext(AuthContext);
+
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      translate('confirmDeleteAccountTitle'),
+      translate('confirmDeleteAccountMessage'),
+      [
+        {
+          text: translate('cancel'),
+          style: 'cancel',
+        },
+        {
+          text: translate('delete'),
+          style: 'destructive',
+          onPress: () => {
+            deleteAccount();
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  };
 
   return (
     <>
@@ -18,7 +40,7 @@ export const ProfileScreen = () => {
         // onPressRight={() => {}}
         // rightIcon={icons.edit}
       />
-      <BaseView styles={styles.container}>
+      <BaseView styles={styles.container} overlayLoading={loading}>
         <View style={styles.innerContainer}>
           <Image source={{uri: helpers.getImage(user?.dp)}} style={styles.dp} />
           <Text style={styles.title}>{user?.name}</Text>
@@ -31,6 +53,10 @@ export const ProfileScreen = () => {
           />
           <InfoRow title={'Gender'} value={helpers.getGender(user?.gender)} />
           <InfoRow title={'Country'} value={user?.country?.name} />
+          <AppButton
+            title={translate('deleteAccount')}
+            onPress={handleDeleteAccount}
+          />
         </View>
         {/* <PackageInfo /> */}
       </BaseView>

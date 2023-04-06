@@ -55,7 +55,6 @@ const en = {
   availablePlans: 'Plans',
   // for screens header title
   plans: 'Available Plans',
-  plans: "'Available Plans'",
   changePassword: 'Change password',
   notifications: 'Notifications',
   invoices: 'Invoices',
@@ -73,6 +72,11 @@ const en = {
   unableToSwitch: 'Unable to Switch from Annual to Monthly Plan',
   notPossibleToSwitchFromAnnualToMonthly:
     'It is not possible to switch from an annual plan to a monthly plan once the annual plan has already been purchased.',
+  deleteAccount: 'Delete account',
+  confirmDeleteAccountTitle: 'Confirm Account deletion',
+  confirmDeleteAccountMessage:
+    'The Deletion of your Khinbo account will be immediate. All the data  provided during registration will be completely removed from the khinbo system ( Email, Password, Age, gender, country, viewing preferences). You will no longer have the ability to log in or watch any content, and your membership will not be refunded.',
+  optional: 'optional',
 };
 
 const fr = {
@@ -141,6 +145,11 @@ const fr = {
   unableToSwitch: 'Impossible de passer du forfait annuel au forfait mensuel',
   notPossibleToSwitchFromAnnualToMonthly:
     "Il n'est pas possible de passer d'un forfait annuel à un forfait mensuel une fois que le forfait annuel a déjà été acheté.",
+  deleteAccount: 'Supprimer le compte',
+  confirmDeleteAccountTitle: 'Confirmer la suppression du compte',
+  confirmDeleteAccountMessage:
+    'La suppression de votre compte Khinbo sera immédiate. Toutes les données fournies lors de l’inscription seront complètement supprimées du système Khinbo (e-mail, mot de passe, âge, sexe, pays, préférences de visionnage). Vous ne pourrez plus vous connecter ou regarder du contenu, et votre adhésion ne sera pas remboursée.',
+  optional: 'facultatif',
 };
 
 i18n.translations = {en, fr};
