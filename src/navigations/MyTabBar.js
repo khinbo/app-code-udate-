@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Pressable} from 'react-native';
+import {Platform, Pressable} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {MotiImage, MotiText} from 'moti';
 import icons from '../constants/icons';
@@ -18,12 +18,18 @@ export function MyTabBar({state, descriptors, navigation}) {
         backgroundColor: COLORS.primary,
         borderTopRightRadius: SIZES.tab_bar_radius,
         borderTopLeftRadius: SIZES.tab_bar_radius,
+
         overflow: 'hidden',
         position: 'absolute',
         bottom: 0,
         right: 0,
         left: 0,
-        height: SIZES.tab_bar_height,
+        height:
+          SIZES.tab_bar_height +
+          Platform.select({
+            android: null,
+            ios: 5,
+          }),
       }}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];

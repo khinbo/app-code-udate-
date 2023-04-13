@@ -40,7 +40,7 @@ export const Onboarding = ({navigation}) => {
               width: SIZES.width,
             }}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('signup')}
+              onPress={() => navigation.navigate('login')}
               style={{
                 alignItems: 'flex-end',
                 justifyContent: 'center',
@@ -145,7 +145,7 @@ export const Onboarding = ({navigation}) => {
         {renderDots()}
         <AppButton
           title="Continue"
-          onPress={() => navigation.navigate('signup')}
+          onPress={() => navigation.navigate('login')}
         />
       </View>
     </View>

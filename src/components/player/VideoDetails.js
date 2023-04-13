@@ -133,7 +133,7 @@ export const VideoDetails = ({
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <Text
+          {/* <Text
             style={{
               ...FONTS.body5,
               fontSize: 12,
@@ -142,10 +142,10 @@ export const VideoDetails = ({
               color: COLORS.black,
             }}>
             {likes} {likes > 1 ? ' likes' : 'like'}
-          </Text>
+          </Text> */}
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text
+          {/* <Text
             style={{
               ...FONTS.body5,
               fontSize: 12,
@@ -155,7 +155,7 @@ export const VideoDetails = ({
             }}>
             {content_details?.views_count}{' '}
             {content_details?.views_count > 1 ? ' views' : 'view'}
-          </Text>
+          </Text> */}
           <Text
             style={{
               ...FONTS.body5,
