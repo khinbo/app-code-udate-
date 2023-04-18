@@ -33,6 +33,8 @@ import toast from '../../toast';
 const custom_height = SIZES.height / 3;
 
 export const SignupScreen = ({navigation}) => {
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
+
   const inputfields = [
     {title: translate('nameTitle'), name: 'name', icon: icons.user},
     {title: translate('emailTitle'), name: 'email', icon: icons.email},
@@ -212,9 +214,20 @@ export const SignupScreen = ({navigation}) => {
                     title={input.title}
                     icon={input.icon}
                     name={input.name}
-                    secureTextEntry={
+                    isPassword={
                       input.name === 'password' ||
                       input.name === 'password_confirmation'
+                    }
+                    isEyeOpen={
+                      isEyeOpen &&
+                      (input.name === 'password' ||
+                        input.name === 'password_confirmation')
+                    }
+                    onPressRightIcon={() => setIsEyeOpen(prv => !prv)}
+                    secureTextEntry={
+                      isEyeOpen &&
+                      (input.name === 'password' ||
+                        input.name === 'password_confirmation')
                     }
                   />
                 </View>

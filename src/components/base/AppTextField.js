@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
 import {COLORS, FONTS} from '../../constants/theme';
+import icons from '../../constants/icons';
 
 export const AppTextField = ({
   icon,
@@ -12,6 +13,9 @@ export const AppTextField = ({
   iconsize = 23,
   dark = false,
   iconcolor = COLORS.black,
+  isPassword = true,
+  isEyeOpen = false,
+  onPressRightIcon,
   ...otherPorps
 }) => {
   return (
@@ -83,6 +87,25 @@ export const AppTextField = ({
         ref={inputRef}
         {...otherPorps}
       />
+      {isPassword && (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={onPressRightIcon && onPressRightIcon}
+          style={{
+            paddingHorizontal: center ? 8 : 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Image
+            source={isEyeOpen ? icons.eyeOpened : icons.eyeClosed}
+            style={{
+              height: center ? 15 : iconsize,
+              width: center ? 15 : iconsize,
+              tintColor: iconcolor,
+            }}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

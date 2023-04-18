@@ -32,6 +32,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ResetPasswordScreen = ({navigation, route}) => {
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
   const email = route.params?.email;
   const [loading, setLoading] = useState(false);
 
@@ -83,9 +84,20 @@ export const ResetPasswordScreen = ({navigation, route}) => {
                   title={input.title}
                   icon={input.icon}
                   name={input.name}
-                  secureTextEntry={
+                  isPassword={
                     input.name === 'password' ||
                     input.name === 'password_confirmation'
+                  }
+                  isEyeOpen={
+                    isEyeOpen &&
+                    (input.name === 'password' ||
+                      input.name === 'password_confirmation')
+                  }
+                  onPressRightIcon={() => setIsEyeOpen(prv => !prv)}
+                  secureTextEntry={
+                    isEyeOpen &&
+                    (input.name === 'password' ||
+                      input.name === 'password_confirmation')
                   }
                 />
               </View>

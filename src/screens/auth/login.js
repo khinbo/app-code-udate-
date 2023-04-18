@@ -1,21 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Platform,
 } from 'react-native';
 import * as Yup from 'yup';
-import {
-  AppForm,
-  AppFormInput,
-  HeroImage,
-  SocialButton,
-  SubmitButton,
-} from '../../components';
+import {AppForm, AppFormInput, HeroImage, SubmitButton} from '../../components';
 import icons from '../../constants/icons';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import useAuth from '../../hooks/useAuth';
@@ -24,6 +17,7 @@ import {translate} from '../../I18n';
 const custom_height = SIZES.height / 3;
 
 export const LoginScreen = ({navigation}) => {
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
   const inputfields = [
     {title: translate('email'), name: 'email', icon: icons.email},
     {title: translate('password'), name: 'password', icon: icons.password},
@@ -62,9 +56,20 @@ export const LoginScreen = ({navigation}) => {
                 <AppFormInput
                   title={input.title}
                   icon={input.icon}
-                  secureTextEntry={
+                  isPassword={
                     input.name === 'password' ||
                     input.name === 'password_confirmation'
+                  }
+                  isEyeOpen={
+                    isEyeOpen &&
+                    (input.name === 'password' ||
+                      input.name === 'password_confirmation')
+                  }
+                  onPressRightIcon={() => setIsEyeOpen(prv => !prv)}
+                  secureTextEntry={
+                    isEyeOpen &&
+                    (input.name === 'password' ||
+                      input.name === 'password_confirmation')
                   }
                   name={input.name}
                 />
