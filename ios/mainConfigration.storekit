@@ -1,0 +1,50 @@
+{
+  "identifier" : "C829A49D",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "6448879284",
+      "localizations" : [
+        {
+          "description" : "1 Monthly premium access of the app",
+          "displayName" : "Khinbo",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "kb_5_1m",
+      "referenceName" : "Premium access",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "34.99",
+      "familyShareable" : false,
+      "internalID" : "6448879422",
+      "localizations" : [
+        {
+          "description" : "Yearly premium access of the app",
+          "displayName" : "KhinboPlus",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "kb_40_1y",
+      "referenceName" : "Yearly Premium access",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6445998171",
+    "_developerTeamID" : "N239SQ2UD9",
+    "_lastSynchronizedDate" : 705123986.02186
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

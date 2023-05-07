@@ -75,7 +75,7 @@ export const PaymentScreen = ({navigation, route}) => {
         if (!resp.ok)
           return Alert.alert(
             'Payment  error',
-            error?.message ? error.message : '',
+            resp?.data?.message ? resp.data.message : '',
           );
         trigger.signin(resp.data);
         setTimeout(() => {

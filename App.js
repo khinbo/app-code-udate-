@@ -51,8 +51,8 @@ const App = () => {
 
   const trigger = useMemo(() => {
     return {
-      signin: user => {
-        setUser(user);
+      signin: u => {
+        setUser(u);
       },
       signout: () => {
         localStorage.removeToken().then(() => {

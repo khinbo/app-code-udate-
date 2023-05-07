@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useState} from 'react';
-import {Text, View, StyleSheet, Alert} from 'react-native';
+import {Text, View, StyleSheet, Alert, Platform} from 'react-native';
 import {AppButton, AppHeader, Appicon, BaseView} from '../../components';
 import icons from '../../constants/icons';
 import {COLORS, FONTS} from '../../constants/theme';
@@ -83,23 +83,27 @@ export const PlanDetailsScreen = ({navigation, route}) => {
                     }, 300);
                   });
                 } else {
-                  if (user?.is_subscribed && item.days < 31)
-                    return Alert.alert(
-                      translate('unableToSwitch'),
-                      translate('notPossibleToSwitchFromAnnualToMonthly'),
-                      [
-                        {
-                          text: translate('cancel'),
-                          onPress: () => {},
-                        },
-                        {
-                          text: translate('goBack'),
-                          onPress: () => navigation.goBack(),
-                          style: 'destructive',
-                        },
-                      ],
-                    );
-                  navigation.navigate('payment', {plan: item});
+                  // if (user?.is_subscribed && item.days < 31)
+                  //   return Alert.alert(
+                  //     translate('unableToSwitch'),
+                  //     translate('notPossibleToSwitchFromAnnualToMonthly'),
+                  //     [
+                  //       {
+                  //         text: translate('cancel'),
+                  //         onPress: () => {},
+                  //       },
+                  //       {
+                  //         text: translate('goBack'),
+                  //         onPress: () => navigation.goBack(),
+                  //         style: 'destructive',
+                  //       },
+                  //     ],
+                  //   );
+                  if (Platform.OS === 'ios') {
+                    navigation.navigate('inAppPurchase', {plan: item});
+                  } else {
+                    navigation.navigate('payment', {plan: item});
+                  }
                 }
               }}
               radius={50}

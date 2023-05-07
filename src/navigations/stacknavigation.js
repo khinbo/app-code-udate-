@@ -21,6 +21,7 @@ import {ForgetPasswordScreen} from '../screens/auth/forgerPassword';
 import {OtpScreen} from '../screens/auth/otp';
 import {ResetPasswordScreen} from '../screens/auth/resetPassword';
 import {SignupOtpScreen} from '../screens/auth/signupOtp';
+import InAppPurchased from '../screens/root/InAppPurchase';
 
 const Stack = createStackNavigator();
 
@@ -108,7 +109,6 @@ export const AuthStack = () => {
 };
 
 export const HomeStack = () => {
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -161,6 +161,7 @@ export const PlanStack = () => {
       <Stack.Screen name="plansStack" component={AvailiblePlansScreen} />
       <Stack.Screen name="planDetails" component={PlanDetailsScreen} />
       <Stack.Screen name="payment" component={PaymentScreen} />
+      <Stack.Screen name="inAppPurchase" component={InAppPurchased} />
     </Stack.Navigator>
   );
 };
