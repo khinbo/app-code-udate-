@@ -184,5 +184,6 @@ const styles = StyleSheet.create({
     ...FONTS.h4,
     textTransform: 'uppercase',
     fontSize: 12,
+    color: COLORS.gray,
   },
 });

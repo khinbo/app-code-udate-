@@ -1,4 +1,4 @@
-package com.karimapps.Khinbo.app.newarchitecture.components;
+package com.Khinbo.app.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

@@ -508,7 +508,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.karimapps.Khinbo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Khinbo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Khinbo.app/Khinbo";
 			};
@@ -533,7 +533,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.karimapps.Khinbo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Khinbo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Khinbo.app/Khinbo";
 			};
@@ -563,7 +563,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.karimapps.Khinbo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Khinbo.app;
 				PRODUCT_NAME = Khinbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Khinbo-Bridging-Header.h";
@@ -598,7 +598,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.karimapps.Khinbo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Khinbo.app;
 				PRODUCT_NAME = Khinbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "khinbo new";

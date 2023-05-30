@@ -271,7 +271,9 @@ export const SignupScreen = ({navigation}) => {
                     {translate('pleaseRead')}{' '}
                     <Text
                       style={{color: COLORS.primary}}
-                      onPress={() => openURL('https://khinbo.com/privacy')}>
+                      onPress={() =>
+                        openURL('https://khinbo.com/privacy-policy')
+                      }>
                       {translate('privacyPilicy')}
                     </Text>{' '}
                     {translate('toKnowWeUseData')}
@@ -337,19 +339,20 @@ const styles = StyleSheet.create({
   terms: {
     ...FONTS.body4,
     fontSize: 12,
-    textAlign: 'center',
     lineHeight: 18,
+    color: COLORS.gray,
   },
   privacy: {
     ...FONTS.body4,
     fontSize: 12,
-    textAlign: 'center',
     lineHeight: 18,
+    color: COLORS.gray,
   },
   desc: {
     ...FONTS.h4,
     textTransform: 'uppercase',
     fontSize: 12,
+    color: COLORS.gray,
   },
   socialContainer: {
     paddingHorizontal: 10,
