@@ -43,6 +43,8 @@ export const Home = () => {
 
   const progressValue = useSharedValue(0);
 
+  console.log(justForYou);
+
   return (
     <>
       <AppHeader title={translate('home')} />

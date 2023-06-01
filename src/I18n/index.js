@@ -96,10 +96,10 @@ const fr = {
   nameTitle: "comment tu t'appelles",
   emailTitle: 'Quel est ton e-mail',
   passwordTitle: 'Créer un mot de passe',
-  confirmPasswordTitle: 'confirmer votre mot de passe',
+  confirmPasswordTitle: 'confirmer le mot de passe',
   passwordValidation:
     'Longueur minimale 8 et doit contenir un caractère spécial et un chiffre',
-  passwordConfirmValidation: 'Veuillez confirmer votre mot de passe',
+  passwordConfirmValidation: 'Veuillez confirmer le mot de passe',
   passwordMustMatched: 'Les mots de passe doivent correspondre',
   createAccount: 'créer un compte',
   registerToContinue: 'Inscrivez-vous pour continuer',

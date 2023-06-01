@@ -201,7 +201,10 @@ const VideoPlayer = ({
               justifyContent: 'space-between',
             }}>
             {isBack ? (
-              <TouchableOpacity activeOpacity={0.7} onPress={backAction}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={{padding: 10}}
+                onPress={backAction}>
                 <Appicon icon={icons.back} color={COLORS.white} />
               </TouchableOpacity>
             ) : null}
