@@ -106,7 +106,13 @@ export const CinemaCard = ({color, height = 220, item, onPressMovieCard}) => {
           <View
             style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
             <Appicon icon={icons.like} size={15} />
-            <Text style={{...FONTS.body4, fontSize: 12, marginLeft: 10}}>
+            <Text
+              style={{
+                ...FONTS.body4,
+                fontSize: 12,
+                marginLeft: 10,
+                color: COLORS.gray,
+              }}>
               <Text>{item?.review_stars}</Text>
               {/* <Text>/</Text>
               <Text>10</Text> */}
@@ -131,6 +137,7 @@ export const CinemaCard = ({color, height = 220, item, onPressMovieCard}) => {
               fontSize: 10,
               lineHeight: 15,
               marginRight: 10,
+              color: COLORS.gray,
             }}>
             {item?.age_rating[0]?.age_advisory}
           </Text>
@@ -147,7 +154,12 @@ export const CinemaCard = ({color, height = 220, item, onPressMovieCard}) => {
         <View style={{marginTop: 2}}>
           <Text
             numberOfLines={5}
-            style={{...FONTS.body4, fontSize: 11, lineHeight: 16}}>
+            style={{
+              ...FONTS.body4,
+              fontSize: 11,
+              lineHeight: 16,
+              color: COLORS.gray,
+            }}>
             {item?.synopsis_long}
           </Text>
         </View>

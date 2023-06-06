@@ -118,7 +118,7 @@ export const LoginScreen = ({navigation}) => {
                 <TouchableOpacity
                   style={{alignSelf: 'center', marginTop: 5}}
                   onPress={() => navigation.navigate('forgetPassword')}>
-                  <Text style={{...FONTS.body5}}>
+                  <Text style={{...FONTS.body5, color: COLORS.gray}}>
                     {translate('forgotYourPassword')}
                   </Text>
                 </TouchableOpacity>
@@ -153,10 +153,12 @@ const styles = StyleSheet.create({
   title: {
     ...FONTS.h2,
     textTransform: 'uppercase',
+    color: COLORS.black,
   },
   subtitle: {
     ...FONTS.body5,
     fontSize: 12,
+    color: COLORS.gray,
   },
   socialContainer: {
     marginTop: 10,

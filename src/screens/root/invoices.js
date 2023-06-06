@@ -8,7 +8,7 @@ export const InvoicesScreen = () => {
     <View style={{flex: 1, backgroundColor: COLORS.white}}>
       <AppHeader title={'Invoices'} />
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Invoices screen</Text>
+        <Text style={{color: COLORS.gray}}>Invoices screen</Text>
       </View>
     </View>
   );

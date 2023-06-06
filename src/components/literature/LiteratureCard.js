@@ -113,6 +113,7 @@ export const LiteratureCard = ({
           style={{
             ...FONTS.h4,
             lineHeight: 19,
+            color: COLORS.gray,
           }}>
           {content?.title}
         </Text>
@@ -164,7 +165,12 @@ export const LiteratureCard = ({
         <View style={{marginTop: 5}}>
           <Text
             numberOfLines={readMode ? 400 : 5}
-            style={{...FONTS.body4, fontSize: 11, lineHeight: 16}}>
+            style={{
+              ...FONTS.body4,
+              fontSize: 11,
+              lineHeight: 16,
+              color: COLORS.gray,
+            }}>
             {content?.description}
           </Text>
         </View>

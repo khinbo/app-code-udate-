@@ -46,6 +46,7 @@ export const OtpScreen = ({navigation, route}) => {
             style={{
               ...FONTS.h3,
               marginBottom: 20,
+              color: COLORS.gray,
             }}>
             we sent your email with 6 digit code
           </Text>

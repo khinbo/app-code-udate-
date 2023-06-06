@@ -46,6 +46,7 @@ export const ForgetPasswordScreen = ({navigation}) => {
             style={{
               ...FONTS.h3,
               marginBottom: 20,
+              color: COLORS.gray,
             }}>
             Enter your email
           </Text>

@@ -103,6 +103,7 @@ export const AppMovieCard = ({
           lineHeight: 16,
           textAlign: 'center',
           marginTop: 3,
+          color: COLORS.black,
         }}>
         {movie?.title}
       </Text>

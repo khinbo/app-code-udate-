@@ -57,6 +57,7 @@ export const PackageInfo = () => (
       <Text
         style={{
           marginBottom: 10,
+          color: COLORS.gray,
         }}>
         <Text
           style={{
@@ -75,6 +76,7 @@ export const PackageInfo = () => (
       <Text
         style={{
           marginBottom: 10,
+          color: COLORS.gray,
         }}>
         <Text
           style={{
@@ -94,6 +96,7 @@ export const PackageInfo = () => (
         style={{
           ...FONTS.body5,
           letterSpacing: 1,
+          color: COLORS.gray,
         }}>
         ( Description of the plan )
       </Text>

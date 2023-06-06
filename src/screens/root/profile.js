@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   title: {
     ...FONTS.h4,
     marginTop: 10,
+    color: COLORS.black,
   },
   infoContainer: {
     flex: 1,

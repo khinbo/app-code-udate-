@@ -107,7 +107,12 @@ export const InterestsScreen = () => {
                   </View>
                 )}
                 <Text
-                  style={{...FONTS.body4, fontSize: 10, marginTop: 2}}
+                  style={{
+                    ...FONTS.body4,
+                    fontSize: 10,
+                    marginTop: 2,
+                    color: COLORS.gray,
+                  }}
                   numberOfLines={1}>
                   {item.title}
                 </Text>

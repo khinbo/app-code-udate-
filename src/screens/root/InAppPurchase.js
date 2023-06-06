@@ -18,7 +18,7 @@ import {
 import {AppButton, AppHeader, BaseView} from '../../components';
 import {AppNoDataFound} from '../../components/base/AppNoData';
 import {View} from 'moti';
-import {FONTS} from '../../constants/theme';
+import {COLORS, FONTS} from '../../constants/theme';
 import toast from '../../toast';
 import server from '../../server';
 import AuthContext from '../../store/AuthContext';
@@ -187,14 +187,17 @@ const styles = StyleSheet.create({
     ...FONTS.h3,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: COLORS.black,
   },
   description: {
     ...FONTS.body4,
     marginBottom: 5,
+    color: COLORS.gray,
   },
   price: {
     ...FONTS.h1,
     fontWeight: 'bold',
+    color: COLORS.black,
   },
   button: {
     backgroundColor: '#008CBA',

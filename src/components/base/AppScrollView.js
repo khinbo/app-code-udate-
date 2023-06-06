@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, ScrollView, RefreshControl} from 'react-native';
-import {FONTS, SIZES} from '../../constants/theme';
+import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import {translate} from '../../I18n';
 
 export const AppScrollView = ({
@@ -19,7 +19,9 @@ export const AppScrollView = ({
   if (!data.length) {
     return (
       <View style={{flex: 1, alignItems: 'center', marginTop: 100}}>
-        <Text style={{...FONTS.h4}}>{translate('noRecordFound')}</Text>
+        <Text style={{...FONTS.h4, color: COLORS.gray}}>
+          {translate('noRecordFound')}
+        </Text>
       </View>
     );
   }

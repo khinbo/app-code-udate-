@@ -24,7 +24,7 @@ export const SportsNewsCard = ({item}) => {
         />
       </View>
       <View style={{marginLeft: 5, width: SIZES.width / 2.5}}>
-        <Text numberOfLines={2} style={{...FONTS.h3}}>
+        <Text numberOfLines={2} style={{...FONTS.h3, color: COLORS.gray}}>
           {item?.title}
         </Text>
         <Text
@@ -34,6 +34,7 @@ export const SportsNewsCard = ({item}) => {
             marginTop: 3,
             fontSize: 12,
             lineHeight: 17,
+            color: COLORS.gray,
           }}>
           {item?.body}
         </Text>

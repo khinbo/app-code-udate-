@@ -22,14 +22,16 @@ export const PlanDetailsScreen = ({navigation, route}) => {
       <AppHeader title={item.name.toUpperCase()} backButton shadow={false} />
       <BaseView styles={styles.wrapper} loading={false}>
         <View style={styles.card}>
-          <Text style={{...FONTS.h3}}>{item?.name}</Text>
+          <Text style={{...FONTS.h3, color: COLORS.black}}>{item?.name}</Text>
           {!item?.is_free ? (
-            <Text style={{...FONTS.body4, fontSize: 12}}>
+            <Text style={{...FONTS.body4, fontSize: 12, color: COLORS.gray}}>
               {item?.days + ' days'}
             </Text>
           ) : null}
 
-          <Text style={{...FONTS.body4}}>{item?.subtitle}</Text>
+          <Text style={{...FONTS.body4, color: COLORS.gray}}>
+            {item?.subtitle}
+          </Text>
           <Text
             style={{...FONTS.h1, marginVertical: 10, color: COLORS.primary}}>
             € {item?.price}
@@ -37,31 +39,41 @@ export const PlanDetailsScreen = ({navigation, route}) => {
           {item?.row_1 ? (
             <View style={styles.row}>
               <Appicon icon={icons.tick} size={15} color={COLORS.primary} />
-              <Text style={{...FONTS.body4, marginLeft: 5}}>{item?.row_1}</Text>
+              <Text style={{...FONTS.body4, marginLeft: 5, color: COLORS.gray}}>
+                {item?.row_1}
+              </Text>
             </View>
           ) : null}
           {item?.row_2 ? (
             <View style={styles.row}>
               <Appicon icon={icons.tick} size={15} color={COLORS.primary} />
-              <Text style={{...FONTS.body4, marginLeft: 5}}>{item?.row_2}</Text>
+              <Text style={{...FONTS.body4, marginLeft: 5, color: COLORS.gray}}>
+                {item?.row_2}
+              </Text>
             </View>
           ) : null}
           {item?.row_3 ? (
             <View style={styles.row}>
               <Appicon icon={icons.tick} size={15} color={COLORS.primary} />
-              <Text style={{...FONTS.body4, marginLeft: 5}}>{item?.row_3}</Text>
+              <Text style={{...FONTS.body4, marginLeft: 5, color: COLORS.gray}}>
+                {item?.row_3}
+              </Text>
             </View>
           ) : null}
           {item?.row_4 ? (
             <View style={styles.row}>
               <Appicon icon={icons.tick} size={15} color={COLORS.primary} />
-              <Text style={{...FONTS.body4, marginLeft: 5}}>{item?.row_4}</Text>
+              <Text style={{...FONTS.body4, marginLeft: 5, color: COLORS.gray}}>
+                {item?.row_4}
+              </Text>
             </View>
           ) : null}
           {item?.row_5 ? (
             <View style={styles.row}>
               <Appicon icon={icons.tick} size={15} color={COLORS.primary} />
-              <Text style={{...FONTS.body4, marginLeft: 5}}>{item?.row_5}</Text>
+              <Text style={{...FONTS.body4, marginLeft: 5, color: COLORS.gray}}>
+                {item?.row_5}
+              </Text>
             </View>
           ) : null}
           <View style={{marginTop: 20}}>

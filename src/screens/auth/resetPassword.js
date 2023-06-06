@@ -68,6 +68,7 @@ export const ResetPasswordScreen = ({navigation, route}) => {
             style={{
               ...FONTS.h2,
               marginBottom: 20,
+              color: COLORS.gray,
             }}>
             Change Password
           </Text>

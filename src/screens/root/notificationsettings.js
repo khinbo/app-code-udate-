@@ -68,8 +68,12 @@ export const NotificationScreen = ({navigation}) => {
                 borderRadius: 5,
                 marginVertical: 5,
               }}>
-              <Text style={{...FONTS.h3}}>{item?.title}</Text>
-              <Text numberOfLines={1} style={{...FONTS.body4}}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
+                {item?.title}
+              </Text>
+              <Text
+                numberOfLines={1}
+                style={{...FONTS.body4, color: COLORS.gray}}>
                 {item?.body}
               </Text>
             </View>
@@ -81,7 +85,7 @@ export const NotificationScreen = ({navigation}) => {
                 justifyContent: 'center',
                 marginTop: 40,
               }}>
-              <Text>No Notifications</Text>
+              <Text style={{color: COLORS.gray}}>No Notifications</Text>
             </View>
           )}
         />

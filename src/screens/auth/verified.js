@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
   title: {
     ...FONTS.h3,
     textTransform: 'capitalize',
+    color: COLORS.gray,
   },
 
   inputContainer: {
@@ -183,11 +184,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     lineHeight: 18,
+    color: COLORS.gray,
   },
   privacy: {
     ...FONTS.body4,
     fontSize: 12,
     textAlign: 'center',
     lineHeight: 18,
+    color: COLORS.gray,
   },
 });

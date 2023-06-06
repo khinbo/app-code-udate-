@@ -57,6 +57,7 @@ export const ItemList = ({item, height, onPressItem, active}) => (
             ...FONTS.body4,
             fontSize: 12,
             lineHeight: 15,
+            color: COLORS.gray,
           }}>
           {item?.artist}
         </Text>
@@ -65,6 +66,7 @@ export const ItemList = ({item, height, onPressItem, active}) => (
             ...FONTS.body5,
             fontSize: 10,
             lineHeight: 13,
+            color: COLORS.gray,
           }}>
           {item.duration > '3600'
             ? moment

@@ -18,6 +18,7 @@ const RenderInfo = ({icon, title}) => {
           fontSize: 10,
           lineHeight: 12,
           marginLeft: 5,
+          color: COLORS.gray,
         }}>
         {title}
       </Text>
@@ -45,7 +46,9 @@ export const CinemaShowTime = () => {
           padding: 10,
           borderRadius: 10,
         }}>
-        <Text style={{...FONTS.h4, marginBottom: 5}}>Arena Cinemas</Text>
+        <Text style={{...FONTS.h4, marginBottom: 5, color: COLORS.gray}}>
+          Arena Cinemas
+        </Text>
         <RenderInfo
           icon={icons.location}
           title="Zurich , switzerlan in the sihilcity"
@@ -60,7 +63,9 @@ export const CinemaShowTime = () => {
           padding: 10,
           borderRadius: 10,
         }}>
-        <Text style={{...FONTS.h4, marginBottom: 5}}>Arena Cinemas</Text>
+        <Text style={{...FONTS.h4, marginBottom: 5, color: COLORS.gray}}>
+          Arena Cinemas
+        </Text>
         <RenderInfo
           icon={icons.location}
           title="Zurich , switzerlan in the sihilcity"

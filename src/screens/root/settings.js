@@ -49,6 +49,7 @@ export const SettingsScreen = () => {
               style={{
                 ...FONTS.h4,
                 lineHeight: 22,
+                color: COLORS.gray,
               }}>
               William S.Jones
             </Text>
@@ -57,6 +58,7 @@ export const SettingsScreen = () => {
                 ...FONTS.body5,
                 fontSize: 10,
                 lineHeight: 13,
+                color: COLORS.gray,
               }}>
               View Profile
             </Text>
@@ -188,6 +190,7 @@ export const SettingsScreen = () => {
           <Text
             style={{
               fontSize: 12,
+              color: COLORS.gray,
             }}>
             {' '}
             1.0.0{' '}

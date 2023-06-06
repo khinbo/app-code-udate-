@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import helpers from '../../constants/helpers';
-import {FONTS} from '../../constants/theme';
+import {COLORS, FONTS} from '../../constants/theme';
 
 const TableRow = ({icon, title, c1, c2, c3, c4, c5}) => {
   return (
@@ -27,6 +27,7 @@ const TableRow = ({icon, title, c1, c2, c3, c4, c5}) => {
             flex: 1,
             fontSize: 10,
             marginRight: 5,
+            color: COLORS.gray,
           }}>
           {title}
         </Text>
@@ -78,5 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     width: '20%',
     textAlign: 'center',
+    color: COLORS.gray,
   },
 });

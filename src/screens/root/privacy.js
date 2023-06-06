@@ -9,7 +9,7 @@ export const PrivacyScreen = () => {
     <View style={{flex: 1, backgroundColor: COLORS.white}}>
       <AppHeader title={'Privacy'} />
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Privacy screen</Text>
+        <Text style={{color: COLORS.gray}}>Privacy screen</Text>
       </View>
     </View>
   );

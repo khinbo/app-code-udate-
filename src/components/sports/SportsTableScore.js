@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text} from 'react-native';
-import {FONTS, SIZES} from '../../constants/theme';
+import {COLORS, FONTS, SIZES} from '../../constants/theme';
 
 export const SportsTableScore = ({color, score}) => {
   return (
@@ -15,6 +15,7 @@ export const SportsTableScore = ({color, score}) => {
           textAlign: 'center',
           fontSize: 12,
           marginVertical: 5,
+          color: COLORS.gray,
         }}>
         {score?.title}
       </Text>
@@ -44,12 +45,19 @@ export const SportsTableScore = ({color, score}) => {
                 ...FONTS.body4,
                 fontSize: 12,
                 marginTop: 5,
+                color: COLORS.gray,
               }}>
               {score?.t1_name}
             </Text>
           </View>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={{...FONTS.h2, fontSize: 30, letterSpacing: 1}}>
+            <Text
+              style={{
+                ...FONTS.h2,
+                fontSize: 30,
+                letterSpacing: 1,
+                color: COLORS.gray,
+              }}>
               <Text>{score?.t1_score}</Text>
               <Text>-</Text>
               <Text>{score?.t2_score}</Text>
@@ -74,6 +82,7 @@ export const SportsTableScore = ({color, score}) => {
                 ...FONTS.body4,
                 fontSize: 12,
                 marginTop: 5,
+                color: COLORS.gray,
               }}>
               {score?.t2_name}
             </Text>

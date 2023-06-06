@@ -18,6 +18,7 @@ const RenderInfo = ({icon, title}) => {
           fontSize: 10,
           lineHeight: 12,
           marginLeft: 5,
+          color: COLORS.gray,
         }}>
         {title}
       </Text>

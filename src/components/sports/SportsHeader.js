@@ -4,7 +4,7 @@ import {View, Text, Platform, StatusBar, TouchableOpacity} from 'react-native';
 import AuthContext from '../../store/AuthContext';
 import {Appicon} from '../base/AppIcon';
 import icons from '../../constants/icons';
-import {FONTS} from '../../constants/theme';
+import {COLORS, FONTS} from '../../constants/theme';
 import {useNavigation} from '@react-navigation/native';
 
 export const SportsHeader = ({onPressProfile, color}) => {
@@ -17,7 +17,9 @@ export const SportsHeader = ({onPressProfile, color}) => {
         paddingHorizontal: 15,
         paddingBottom: 10,
       }}>
-      <Text style={{...FONTS.body4, fontSize: 11}}>Hello {user?.name}</Text>
+      <Text style={{...FONTS.body4, fontSize: 11, color: COLORS.gray}}>
+        Hello {user?.name}
+      </Text>
       <View
         style={{
           flexDirection: 'row',

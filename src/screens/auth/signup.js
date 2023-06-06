@@ -317,10 +317,12 @@ const styles = StyleSheet.create({
   title: {
     ...FONTS.h2,
     textTransform: 'capitalize',
+    color: COLORS.black,
   },
   subtitle: {
     ...FONTS.body5,
     fontSize: 12,
+    color: COLORS.gray,
   },
   underLine: {
     height: 3,
