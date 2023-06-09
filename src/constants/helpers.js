@@ -1,4 +1,6 @@
+import {Alert} from 'react-native';
 import {StorageURL, URL} from '../server/urls';
+import toast from '../toast';
 
 export const UNSUBSCRIBE = 'unsubscribe';
 export const FREE = 'free';
@@ -41,9 +43,26 @@ const checkSubsciption = item => {
   else return SUBSCRIBE;
 };
 
+const apiResponseErrorHandler = resp => {
+  if (resp.data && resp.data?.title && resp.data?.message) {
+    Alert.alert(resp.data.title, resp.data.message);
+  } else {
+    const message = resp?.data?.message || 'NETWORK_ERR';
+    toast.show(message);
+  }
+};
+
+const apiMessageHandler = resp => {
+  if (resp?.data?.message) {
+    toast.show(resp.data.message);
+  }
+};
+
 export default {
   getGender,
   getImage,
   getVideo,
   checkSubsciption,
+  apiResponseErrorHandler,
+  apiMessageHandler,
 };

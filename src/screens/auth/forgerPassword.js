@@ -6,7 +6,7 @@ import {AppForm, AppFormInput, AppHeader, SubmitButton} from '../../components';
 import icons from '../../constants/icons';
 import {COLORS, FONTS} from '../../constants/theme';
 import server from '../../server';
-import toast from '../../toast';
+import helpers from '../../constants/helpers';
 
 const inputfields = [
   {title: 'Email address', name: 'email', icon: icons.email},
@@ -23,7 +23,9 @@ export const ForgetPasswordScreen = ({navigation}) => {
     setLoading(true);
     server.sendOtp(values).then(resp => {
       setLoading(false);
-      if (!resp.ok) return toast.show('error while sending otp');
+      if (!resp.ok) {
+        return helpers.apiResponseErrorHandler(resp);
+      }
       setTimeout(() => {
         navigation.navigate('otp', {user: resp.data});
       }, 500);

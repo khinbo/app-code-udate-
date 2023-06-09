@@ -31,6 +31,9 @@ export const DemandList = ({
   }
 
   function isValid() {
+    if (item?.is_free) {
+      return true;
+    }
     if (
       helpers.checkSubsciption(user?.is_subscribed) === SUBSCRIBE &&
       helpers.checkSubsciption(user?.is_subscribed) !== FREE
@@ -42,16 +45,6 @@ export const DemandList = ({
       return false;
     }
 
-    if (item?.type === 'art') {
-      if (helpers.checkSubsciption(user?.is_subscribed) === FREE) {
-        return true;
-      }
-    }
-    if (item?.type === 'literature') {
-      if (helpers.checkSubsciption(user?.is_subscribed) === FREE) {
-        return true;
-      }
-    }
     return false;
   }
   return (

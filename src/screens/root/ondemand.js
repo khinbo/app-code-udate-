@@ -28,7 +28,6 @@ export const OndemandScreen = () => {
   }, []);
 
   const onPressDemond = item => {
-    console.log(item);
     // alert(JSON.stringify(item))
     dispatch(resetData());
     switch (item.type) {

@@ -116,8 +116,9 @@ export const PaymentScreen = ({navigation, route}) => {
             dangerouslyGetFullCardDetails
             postalCodeEnabled={false}
             cardStyle={{
-              backgroundColor: '#FFFFFF',
-              textColor: '#000000',
+              backgroundColor: COLORS.lightGray,
+              textColor: COLORS.black,
+              placeholderColor: COLORS.gray,
             }}
             style={{
               width: '100%',

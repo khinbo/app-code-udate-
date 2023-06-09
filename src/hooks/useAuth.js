@@ -60,7 +60,7 @@ export default useAuth = () => {
               navigation.navigate('interests');
             }
           });
-        } else toast.show(resp.data?.message);
+        } else helpers.apiResponseErrorHandler(resp);
       } else updateUser(resp.data.access_token, resp.data.user);
     });
   }, []);
@@ -85,10 +85,7 @@ export default useAuth = () => {
               navigation.navigate('interests');
             }
           });
-        } else
-          resp.status === 422
-            ? toast.show(resp.data[0])
-            : toast.show(resp.data?.message);
+        } else helpers.apiResponseErrorHandler(resp);
       } else updateUser(resp.data.access_token, resp.data.user);
     });
   }, []);
@@ -113,10 +110,7 @@ export default useAuth = () => {
               navigation.navigate('interests');
             }
           });
-        } else
-          resp.status === 422
-            ? toast.show(resp.data[0])
-            : toast.show(resp.data?.message);
+        } else helpers.apiResponseErrorHandler(resp);
       } else updateUser(resp.data.access_token, resp.data.user);
     });
   }, []);
@@ -160,7 +154,7 @@ export default useAuth = () => {
               navigation.navigate('interests');
             }
           });
-        } else toast.show(resp.data?.message);
+        } else helpers.apiResponseErrorHandler(resp);
       } else updateUser(resp.data.access_token, resp.data.user);
     });
   };
@@ -184,10 +178,7 @@ export default useAuth = () => {
               navigation.navigate('interests');
             }
           });
-        } else
-          resp.status === 422
-            ? toast.show(resp.data[0])
-            : toast.show(resp.data?.message);
+        } else helpers.apiResponseErrorHandler(resp);
       } else updateUser(resp.data.access_token, resp.data.user);
     });
   }, []);
@@ -313,10 +304,7 @@ export default useAuth = () => {
               navigation.navigate('interests');
             }
           });
-        } else
-          resp.status === 422
-            ? toast.show(resp.data[0])
-            : toast.show(resp.data?.message);
+        } else helpers.apiResponseErrorHandler(resp);
       } else updateUser(resp.data.access_token, resp.data.user);
     });
   }
@@ -325,7 +313,9 @@ export default useAuth = () => {
     setLoading(true);
     server.changePassword(values).then(resp => {
       setLoading(false);
-      if (!resp.ok) return toast.show(resp?.data?.message ?? 'error');
+      if (!resp.ok) {
+        return helpers.apiResponseErrorHandler(resp);
+      }
       toast.show(resp.data?.message ?? 'success');
     });
   }, []);
@@ -341,10 +331,10 @@ export default useAuth = () => {
     setLoading(true);
     const response = await server.deleteAccount();
     if (!response.ok) {
-      return toast.show(response.data?.message);
+      return helpers.apiResponseErrorHandler(response);
     }
     trigger.signout();
-  }, []);
+  }, [trigger]);
 
   return {
     signin,
