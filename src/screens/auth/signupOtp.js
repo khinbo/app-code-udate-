@@ -110,12 +110,11 @@ export const SignupOtpScreen = ({navigation, route}) => {
                     textAlign: 'center',
                   }}>
                   didn't receive a code.
-                  <TouchableOpacity
-                    disabled={overlayLoading}
+                  <Text
                     onPress={resendCode}
                     style={{color: COLORS.primary, marginLeft: 3}}>
                     Resend
-                  </TouchableOpacity>
+                  </Text>
                 </Text>
               </View>
             </View>
