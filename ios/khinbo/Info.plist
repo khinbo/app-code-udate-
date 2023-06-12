@@ -77,6 +77,8 @@
 	<string>khinbo requires access to your phone’s camera.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to find out cinemas near by you.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs to access your location to find cinemas near you, even when the app is in the background.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bold.ttf</string>
