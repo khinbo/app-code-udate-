@@ -18,7 +18,6 @@ import {
   AppFormPicker,
   AppFormRadio,
   BaseView,
-  SocialButton,
   SubmitButton,
 } from '../../components';
 import icons from '../../constants/icons';
@@ -29,6 +28,7 @@ import {getBottomSpace} from 'react-native-iphone-x-helper';
 import images from '../../constants/images';
 import server from '../../server';
 import toast from '../../toast';
+import helpers from '../../constants/helpers';
 
 const custom_height = SIZES.height / 3;
 
@@ -99,14 +99,7 @@ export const SignupScreen = ({navigation}) => {
 
   const [loading, setLoading] = useState(false);
 
-  const {
-    loginWithFacebook,
-    loginWithGoogle,
-    loginWithApple,
-    getCountries,
-    countries,
-    initialLoading,
-  } = useAuth();
+  const {getCountries, countries, initialLoading} = useAuth();
   useEffect(() => {
     getCountries();
   }, []);
@@ -115,13 +108,14 @@ export const SignupScreen = ({navigation}) => {
     setLoading(true);
     server.sendEmailOtp({email: payload?.email}).then(resp => {
       setLoading(false);
-      console.log(resp.data);
-      if (!resp.ok) toast.show('error while sending otp.');
-      else
+      if (!resp.ok) {
+        helpers.apiResponseErrorHandler(resp);
+      } else {
         navigation.navigate('signupotp', {
           otp: resp.data,
           payload,
         });
+      }
     });
   };
 

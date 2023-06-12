@@ -1,12 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import * as Yup from 'yup';
-import {AppForm, AppFormInput, AppHeader, SubmitButton} from '../../components';
+import {
+  AppForm,
+  AppFormInput,
+  AppHeader,
+  BaseView,
+  SubmitButton,
+} from '../../components';
 import icons from '../../constants/icons';
 import {COLORS, FONTS} from '../../constants/theme';
 import server from '../../server';
 import toast from '../../toast';
+import helpers from '../../constants/helpers';
 
 const inputfields = [{title: '6 digit code', name: 'code', icon: icons.tick}];
 
@@ -16,6 +23,7 @@ const validationSchema = Yup.object().shape({
 
 export const OtpScreen = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
+  const [overlayLoading, setOverlayLoading] = useState(false);
 
   const user = route.params?.user;
 
@@ -30,8 +38,22 @@ export const OtpScreen = ({navigation, route}) => {
     }
   };
 
+  const resendCode = () => {
+    setOverlayLoading(true);
+    server.sendEmailOtp({email: user?.email}).then(resp => {
+      setOverlayLoading(false);
+      if (!resp.ok) {
+        helpers.apiResponseErrorHandler(resp);
+      } else {
+        helpers.apiMessageHandler(resp);
+      }
+    });
+  };
+
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.white}}>
+    <BaseView
+      overlayLoading={overlayLoading}
+      styles={{flex: 1, backgroundColor: COLORS.white}}>
       <AppHeader title={'Forget Password'} backButton />
       <View
         style={{
@@ -76,10 +98,28 @@ export const OtpScreen = ({navigation, route}) => {
                 marginTop: 5,
               }}>
               <SubmitButton title="Continue" loading={loading} />
+              <View
+                style={{
+                  marginTop: 5,
+                }}>
+                <Text
+                  style={{
+                    ...FONTS.body4,
+                    textAlign: 'center',
+                  }}>
+                  didn't receive a code.
+                  <TouchableOpacity
+                    disabled={overlayLoading}
+                    onPress={resendCode}
+                    style={{color: COLORS.primary, marginLeft: 3}}>
+                    Resend
+                  </TouchableOpacity>
+                </Text>
+              </View>
             </View>
           </AppForm>
         </View>
       </View>
-    </View>
+    </BaseView>
   );
 };
