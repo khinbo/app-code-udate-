@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import * as Yup from 'yup';
 import {
@@ -24,12 +24,19 @@ const validationSchema = Yup.object().shape({
 export const OtpScreen = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
   const [overlayLoading, setOverlayLoading] = useState(false);
+  const [otp, setOtp] = useState(null);
 
   const user = route.params?.user;
 
+  useEffect(() => {
+    if (user) {
+      setOtp(user.otp);
+    }
+  }, [user]);
+
   const changePassword = values => {
     const {code} = values;
-    if (code == user?.otp) {
+    if (code == otp) {
       setTimeout(() => {
         navigation.navigate('resetPassword', {email: user?.email});
       }, 500);
@@ -45,6 +52,9 @@ export const OtpScreen = ({navigation, route}) => {
       if (!resp.ok) {
         helpers.apiResponseErrorHandler(resp);
       } else {
+        if (resp.data && resp.data?.code) {
+          setOtp(resp.data?.code);
+        }
         helpers.apiMessageHandler(resp);
       }
     });
