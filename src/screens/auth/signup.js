@@ -111,10 +111,12 @@ export const SignupScreen = ({navigation}) => {
       if (!resp.ok) {
         helpers.apiResponseErrorHandler(resp);
       } else {
-        navigation.navigate('signupotp', {
-          otp: resp.data,
-          payload,
-        });
+        if (resp.data && resp.data?.code) {
+          navigation.navigate('signupotp', {
+            otp: resp.data?.code,
+            payload,
+          });
+        }
       }
     });
   };

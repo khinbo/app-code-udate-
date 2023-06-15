@@ -55,7 +55,7 @@ export const SignupOtpScreen = ({navigation, route}) => {
         helpers.apiResponseErrorHandler(resp);
       } else {
         if (resp.data && resp.data?.code) {
-          setOtp(resp.data?.code);
+          setOtp(resp.data.code);
         }
         helpers.apiMessageHandler(resp);
       }
