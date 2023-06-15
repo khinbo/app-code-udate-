@@ -47,6 +47,11 @@ const apiResponseErrorHandler = resp => {
   if (resp.data && resp.data?.title && resp.data?.message) {
     Alert.alert(resp.data.title, resp.data.message);
   } else {
+    if (resp.data && resp.data?.errors) {
+      let fieldName = Object.keys(resp.data.errors)[0];
+      let errorMessage = resp.data.errors[fieldName][0];
+      return toast.show(`${fieldName} ${errorMessage}`);
+    }
     const message = resp?.data?.message || 'NETWORK_ERR';
     toast.show(message);
   }

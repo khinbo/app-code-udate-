@@ -21,7 +21,7 @@ import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 import helpers from '../constants/helpers';
 
-export default useAuth = () => {
+const useAuth = () => {
   const navigation = useNavigation();
   const {trigger} = useContext(AuthContext);
   const [initialLoading, setInitialLoading] = useState(false);
@@ -41,79 +41,88 @@ export default useAuth = () => {
     });
   }, []);
 
-  const signin = useCallback(values => {
-    Keyboard.dismiss();
-    setLoading(true);
-    server.signin(values).then(resp => {
-      localStorage.getPushToken().then(token => {
-        server.updateToken({push_token: token});
+  const signin = useCallback(
+    values => {
+      Keyboard.dismiss();
+      setLoading(true);
+      server.signin(values).then(resp => {
+        localStorage.getPushToken().then(token => {
+          server.updateToken({push_token: token});
+        });
+        setLoading(false);
+        if (!resp.ok) {
+          if (resp.data?.message === 'pending') {
+            localStorage.saveToken(resp.data?.access_token).then(() => {
+              if (resp.data.type === 'profile') {
+                navigation.navigate('verified', {
+                  user: resp.data.user,
+                });
+              } else {
+                navigation.navigate('interests');
+              }
+            });
+          } else helpers.apiResponseErrorHandler(resp);
+        } else updateUser(resp.data.access_token, resp.data.user);
       });
-      setLoading(false);
-      if (!resp.ok) {
-        if (resp.data?.message === 'pending') {
-          localStorage.saveToken(resp.data?.access_token).then(() => {
-            if (resp.data.type === 'profile') {
-              navigation.navigate('verified', {
-                user: resp.data.user,
-              });
-            } else {
-              navigation.navigate('interests');
-            }
-          });
-        } else helpers.apiResponseErrorHandler(resp);
-      } else updateUser(resp.data.access_token, resp.data.user);
-    });
-  }, []);
+    },
+    [navigation, updateUser],
+  );
 
-  const signup = useCallback(values => {
-    Keyboard.dismiss();
-    const payload = {
-      ...values,
-      dob: moment(values.dob).format('YYYY-MM-DD'),
-    };
-    setLoading(true);
-    server.signup(payload).then(resp => {
-      setLoading(false);
-      if (!resp.ok) {
-        if (resp.data?.message === 'pending') {
-          localStorage.saveToken(resp.data?.access_token).then(() => {
-            if (resp.data.type === 'profile') {
-              navigation.navigate('verified', {
-                user: resp.data.user,
-              });
-            } else {
-              navigation.navigate('interests');
-            }
-          });
-        } else helpers.apiResponseErrorHandler(resp);
-      } else updateUser(resp.data.access_token, resp.data.user);
-    });
-  }, []);
+  const signup = useCallback(
+    values => {
+      Keyboard.dismiss();
+      const payload = {
+        ...values,
+        dob: moment(values.dob).format('YYYY-MM-DD'),
+      };
+      setLoading(true);
+      server.signup(payload).then(resp => {
+        setLoading(false);
+        if (!resp.ok) {
+          if (resp.data?.message === 'pending') {
+            localStorage.saveToken(resp.data?.access_token).then(() => {
+              if (resp.data.type === 'profile') {
+                navigation.navigate('verified', {
+                  user: resp.data.user,
+                });
+              } else {
+                navigation.navigate('interests');
+              }
+            });
+          } else helpers.apiResponseErrorHandler(resp);
+        } else updateUser(resp.data.access_token, resp.data.user);
+      });
+    },
+    [navigation, updateUser],
+  );
 
-  const completeProfile = useCallback(values => {
-    Keyboard.dismiss();
-    const payload = {
-      ...values,
-      dob: moment(values.dob).format('YYYY-MM-DD'),
-    };
-    setLoading(true);
-    server.completeProfile(payload).then(resp => {
-      setLoading(false);
-      if (!resp.ok) {
-        if (resp.data?.message === 'pending') {
-          localStorage.saveToken(resp.data?.access_token).then(() => {
-            if (resp.data.type === 'profile') {
-              navigation.navigate('verified', {
-                user: resp.data.user,
-              });
-            } else {
-              navigation.navigate('interests');
-            }
-          });
-        } else helpers.apiResponseErrorHandler(resp);
-      } else updateUser(resp.data.access_token, resp.data.user);
-    });
-  }, []);
+  const completeProfile = useCallback(
+    values => {
+      Keyboard.dismiss();
+      const payload = {
+        ...values,
+        dob: moment(values.dob).format('YYYY-MM-DD'),
+      };
+      setLoading(true);
+      server.completeProfile(payload).then(resp => {
+        setLoading(false);
+        if (!resp.ok) {
+          if (resp.data?.message === 'pending') {
+            localStorage.saveToken(resp.data?.access_token).then(() => {
+              if (resp.data.type === 'profile') {
+                navigation.navigate('verified', {
+                  user: resp.data.user,
+                });
+              } else {
+                navigation.navigate('interests');
+              }
+            });
+          } else helpers.apiResponseErrorHandler(resp);
+        } else updateUser(resp.data.access_token, resp.data.user);
+      });
+    },
+    [navigation, updateUser],
+  );
 
   const loginWithApple = async () => {
     const appleAuthRequestResponse = await appleAuth.performRequest({
@@ -159,29 +168,32 @@ export default useAuth = () => {
     });
   };
 
-  const completeInterestStatus = useCallback(values => {
-    Keyboard.dismiss();
-    const payload = {
-      categories: JSON.stringify(values),
-    };
-    setLoading(true);
-    server.completeInterestStatus(payload).then(resp => {
-      setLoading(false);
-      if (!resp.ok) {
-        if (resp.data?.message === 'pending') {
-          localStorage.saveToken(resp.data?.access_token).then(() => {
-            if (resp.data.type === 'profile') {
-              navigation.navigate('verified', {
-                user: resp.data.user,
-              });
-            } else {
-              navigation.navigate('interests');
-            }
-          });
-        } else helpers.apiResponseErrorHandler(resp);
-      } else updateUser(resp.data.access_token, resp.data.user);
-    });
-  }, []);
+  const completeInterestStatus = useCallback(
+    values => {
+      Keyboard.dismiss();
+      const payload = {
+        categories: JSON.stringify(values),
+      };
+      setLoading(true);
+      server.completeInterestStatus(payload).then(resp => {
+        setLoading(false);
+        if (!resp.ok) {
+          if (resp.data?.message === 'pending') {
+            localStorage.saveToken(resp.data?.access_token).then(() => {
+              if (resp.data.type === 'profile') {
+                navigation.navigate('verified', {
+                  user: resp.data.user,
+                });
+              } else {
+                navigation.navigate('interests');
+              }
+            });
+          } else helpers.apiResponseErrorHandler(resp);
+        } else updateUser(resp.data.access_token, resp.data.user);
+      });
+    },
+    [navigation, updateUser],
+  );
 
   const loginWithGoogle = useCallback(async () => {
     try {
@@ -320,12 +332,15 @@ export default useAuth = () => {
     });
   }, []);
 
-  function updateUser(token, user) {
-    localStorage.saveToken(token).then(async () => {
-      await localStorage.saveIsFirstTime();
-      trigger.signin(user);
-    });
-  }
+  const updateUser = useCallback(
+    (token, user) => {
+      localStorage.saveToken(token).then(async () => {
+        await localStorage.saveIsFirstTime();
+        trigger.signin(user);
+      });
+    },
+    [trigger],
+  );
 
   const deleteAccount = useCallback(async () => {
     setLoading(true);
@@ -352,3 +367,5 @@ export default useAuth = () => {
     countries,
   };
 };
+
+export default useAuth;
