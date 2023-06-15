@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import * as Yup from 'yup';
 import {
@@ -26,9 +26,17 @@ export const SignupOtpScreen = ({navigation, route}) => {
   const {signup, loading} = useAuth();
   const [overlayLoading, setOverlayLoading] = useState(false);
 
-  const otp = route.params?.otp;
+  const signupOTP = route.params?.otp;
   const payload = route?.params?.payload;
   const email = payload?.email;
+
+  const [otp, setOtp] = useState(null);
+
+  useEffect(() => {
+    if (signupOTP) {
+      setOtp(signupOTP);
+    }
+  }, [signupOTP]);
 
   const changePassword = values => {
     const {code} = values;
@@ -46,6 +54,9 @@ export const SignupOtpScreen = ({navigation, route}) => {
       if (!resp.ok) {
         helpers.apiResponseErrorHandler(resp);
       } else {
+        if (resp.data && resp.data?.code) {
+          setOtp(resp.data?.code);
+        }
         helpers.apiMessageHandler(resp);
       }
     });
