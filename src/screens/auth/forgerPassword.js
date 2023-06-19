@@ -64,6 +64,7 @@ export const ForgetPasswordScreen = ({navigation}) => {
                   title={input.title}
                   icon={input.icon}
                   name={input.name}
+                  isPassword={false}
                   secureTextEntry={
                     input.name === 'password' ||
                     input.name === 'password_confirmation'
