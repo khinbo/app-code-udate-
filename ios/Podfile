@@ -20,6 +20,9 @@ target 'Khinbo' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-google-cast/NoBluetooth', path: '../node_modules/react-native-google-cast/'
+  pod 'google-cast-sdk-no-bluetooth', '4.6.1'
+  
   target 'KhinboTests' do
     inherit! :complete
     # Pods for testing

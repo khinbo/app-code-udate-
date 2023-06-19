@@ -13,11 +13,13 @@ import icons from '../../constants/icons';
 import {COLORS, FONTS, SIZES} from '../../constants/theme';
 import {ContentLikeHandler} from '../../store/reducers/player';
 import {Appicon} from '../base/AppIcon';
+import {CastButton} from 'react-native-google-cast';
 
 export const VideoDetails = ({
   onDownload,
   filePath,
   isDownloaded,
+  handleCastButtonPress,
   progress,
 }) => {
   const {hasLiked, likes, content_details} = useSelector(state => state.player);
@@ -54,6 +56,16 @@ export const VideoDetails = ({
             flexDirection: 'row',
             alignItems: 'center',
           }}>
+          <CastButton
+            style={{
+              width: 30,
+              height: 30,
+              tintColor: COLORS.black,
+              marginHorizontal: 10,
+              marginTop: 10,
+            }}
+          />
+
           {progress && filePath === content_details?.path ? (
             <View
               style={{

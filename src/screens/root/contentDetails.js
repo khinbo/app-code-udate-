@@ -18,6 +18,7 @@ import {
   getRecommmendedContents,
   onPlayVideo,
 } from '../../store/reducers/player';
+import {useRemoteMediaClient} from 'react-native-google-cast';
 
 const itemHeight = 80;
 
@@ -30,6 +31,19 @@ export const ContentDetails = ({route, navigation}) => {
   );
 
   const {addToTask, progress, isDownloaded, isPathExist} = useDownload();
+
+  const client = useRemoteMediaClient();
+
+  useEffect(() => {
+    if (client && content_details?.raw_url) {
+      client.loadMedia({
+        mediaInfo: {
+          contentUrl: helpers.getImage(content_details.raw_url),
+          contentType: 'video/mp4',
+        },
+      });
+    }
+  }, [client, content_details]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', async () => {

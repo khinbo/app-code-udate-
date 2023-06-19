@@ -20,6 +20,7 @@ import helpers from '../constants/helpers';
 import localStorage from '../server/localStorage';
 import {changeLanguage, setLanguage} from '../I18n';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DevelopedByKarimApps from '../components/base/DevelopedByKarimApps';
 
 const menu_items = [
   {
@@ -284,16 +285,7 @@ export const DrawerContent = props => {
           activeLang={activeLang}
           onPress={lang => handleLanguage(lang)}
         />
-        <Text
-          style={{
-            textAlign: 'right',
-            ...FONTS.h4,
-            color: 'rgba(0,0,0,0.3)',
-            fontSize: 10,
-            marginBottom: getBottomSpace(),
-          }}>
-          v<Text>1.9.1</Text>
-        </Text>
+        <DevelopedByKarimApps />
       </View>
     </View>
   );

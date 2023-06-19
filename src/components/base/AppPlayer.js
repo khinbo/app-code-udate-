@@ -108,8 +108,6 @@ export const AppPlayer = ({
     return true;
   };
 
-  console.log('sss');
-
   return (
     <>
       <VideoPlayer
