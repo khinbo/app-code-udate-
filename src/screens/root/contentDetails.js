@@ -19,6 +19,7 @@ import {
   onPlayVideo,
 } from '../../store/reducers/player';
 import {useRemoteMediaClient} from 'react-native-google-cast';
+import video from '../../refs/video';
 
 const itemHeight = 80;
 
@@ -42,6 +43,7 @@ export const ContentDetails = ({route, navigation}) => {
           contentType: 'video/mp4',
         },
       });
+      video.pauseAsync();
     }
   }, [client, content_details]);
 
