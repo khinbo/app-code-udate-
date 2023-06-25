@@ -33,6 +33,7 @@ const App = () => {
     const firstVisitValue = await localStorage.getIsFirstTime();
     setFirstVisit(firstVisitValue);
     const lang = await localStorage.getLang();
+    console.log(lang);
     await changeLanguage(lang ? lang : 'fr');
     server.getStripeKey().then(resp => {
       if (!resp.ok)

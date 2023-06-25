@@ -177,8 +177,8 @@ export const setI18nConfig = lang => {
     i18n.translations = {[lang]: translationGetters[lang]()};
     i18n.locale = lang;
   } else {
-    i18n.translations = {['en']: translationGetters.en()};
-    i18n.locale = 'en';
+    i18n.translations = {['fr']: translationGetters.fr()};
+    i18n.locale = 'fr';
   }
 };
 

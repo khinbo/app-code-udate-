@@ -20,6 +20,7 @@ import toast from '../toast';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 import helpers from '../constants/helpers';
+import {changeLanguage, setLanguage} from '../I18n';
 
 const useAuth = () => {
   const navigation = useNavigation();
@@ -336,6 +337,9 @@ const useAuth = () => {
     (token, user) => {
       localStorage.saveToken(token).then(async () => {
         await localStorage.saveIsFirstTime();
+        changeLanguage('fr');
+        setLanguage('fr');
+        await localStorage.saveLang('fr');
         trigger.signin(user);
       });
     },
