@@ -1,10 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, Text, Linking} from 'react-native';
-import {COLORS, FONTS} from '../../constants/theme';
+import {TouchableOpacity, Linking, Image} from 'react-native';
 
 const DevelopedByKarimApps = () => {
   const handleLinkPress = () => {
-    Linking.openURL('http://www.karimapps.com');
+    Linking.openURL('https://mypromax.com');
   };
 
   return (
@@ -12,9 +11,7 @@ const DevelopedByKarimApps = () => {
       style={{marginTop: 10}}
       activeOpacity={0.7}
       onPress={handleLinkPress}>
-      <Text style={{...FONTS.h3, textDecorationLine: 'underline'}}>
-        Developed by <Text style={{color: COLORS.primary}}>Karimapps</Text>
-      </Text>
+      <Image source={require('../../assets/mypromax.png')} />
     </TouchableOpacity>
   );
 };

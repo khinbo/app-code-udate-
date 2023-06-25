@@ -280,7 +280,14 @@ export const DrawerContent = props => {
           {renderMenuItem(props)}
         </View>
       </DrawerContentScrollView>
-      <View style={{marginHorizontal: 20, marginBottom: 5}}>
+      <View
+        style={{
+          marginHorizontal: 20,
+          marginBottom: 5,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
         <SwitchLangButtons
           activeLang={activeLang}
           onPress={lang => handleLanguage(lang)}
