@@ -7,10 +7,7 @@ const DevelopedByKarimApps = () => {
   };
 
   return (
-    <TouchableOpacity
-      style={{marginTop: 10}}
-      activeOpacity={0.7}
-      onPress={handleLinkPress}>
+    <TouchableOpacity activeOpacity={0.7} onPress={handleLinkPress}>
       <Image source={require('../../assets/mypromax.png')} />
     </TouchableOpacity>
   );

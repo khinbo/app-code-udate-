@@ -282,11 +282,15 @@ export const DrawerContent = props => {
       </DrawerContentScrollView>
       <View
         style={{
-          marginHorizontal: 20,
+          marginHorizontal: 5,
           marginBottom: 5,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
+          paddingBottom: Platform.select({
+            android: 0,
+            ios: 30,
+          }),
         }}>
         <SwitchLangButtons
           activeLang={activeLang}
