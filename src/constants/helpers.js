@@ -57,6 +57,20 @@ const apiResponseErrorHandler = resp => {
   }
 };
 
+const isValid = user => {
+  if (
+    checkSubsciption(user?.is_subscribed) === SUBSCRIBE &&
+    checkSubsciption(user?.is_subscribed) !== FREE
+  ) {
+    return true;
+  }
+
+  if (checkSubsciption(user?.is_subscribed) === UNSUBSCRIBE) {
+    return false;
+  }
+  return false;
+};
+
 const apiMessageHandler = resp => {
   if (resp?.data?.message) {
     toast.show(resp.data.message);
@@ -70,4 +84,5 @@ export default {
   checkSubsciption,
   apiResponseErrorHandler,
   apiMessageHandler,
+  isValid,
 };

@@ -8,6 +8,7 @@ import {
   FlatList,
   Image,
   RefreshControl,
+  TouchableOpacity,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Carousel from 'react-native-reanimated-carousel';
@@ -23,15 +24,18 @@ import {translate} from '../../I18n';
 import {getHomeData, setRefresh} from '../../store/reducers/home';
 import AuthContext from '../../store/AuthContext';
 import {useSharedValue} from 'react-native-reanimated';
+import helpers from '../../constants/helpers';
+import {onContentViewHandler} from '../../store/reducers/player';
 
 const PAGE_WIDTH = SIZES.width;
-export const Home = () => {
+export const Home = ({navigation}) => {
   const {user} = useContext(AuthContext);
   const dispatch = useDispatch();
   const {
     initialLoading,
     refresh,
     images,
+    sliderData,
     recentlyWatched,
     mightInterestedContent,
     justForYou,
@@ -42,8 +46,6 @@ export const Home = () => {
   }, []);
 
   const progressValue = useSharedValue(0);
-
-  console.log(justForYou);
 
   return (
     <>
@@ -82,7 +84,23 @@ export const Home = () => {
               parallaxScrollingOffset: 50,
             }}
             renderItem={({item, index}) => (
-              <View
+              <TouchableOpacity
+                activeOpacity={0.9}
+                onPress={() => {
+                  const movie = sliderData[index];
+                  if (!helpers.isValid(user)) {
+                    navigation.navigate('plans');
+                  } else {
+                    movie?.video_url
+                      ? dispatch(
+                          onContentViewHandler({item: movie, type: 'demands'}),
+                        )
+                      : navigation.navigate('artDetails', {
+                          art: movie,
+                          color: COLORS.primary,
+                        });
+                  }
+                }}
                 style={{
                   height: '100%',
                   width: '100%',
@@ -93,7 +111,7 @@ export const Home = () => {
                   style={{height: '100%', width: '100%', borderRadius: 20}}
                   source={{uri: item}}
                 />
-              </View>
+              </TouchableOpacity>
             )}
           />
           {!!progressValue && (
