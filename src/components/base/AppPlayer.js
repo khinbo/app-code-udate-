@@ -100,7 +100,9 @@ export const AppPlayer = ({
               if (status !== 'PORTRAIT') Orientation.lockToPortrait();
             });
             video?.stopAsync();
-            navigation.goBack();
+            setTimeout(() => {
+              navigation.goBack();
+            }, 1000);
           }
         },
       },

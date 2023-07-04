@@ -10,6 +10,7 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
+import Share from 'react-native-share';
 
 import icons from '../constants/icons';
 import images from '../constants/images';
@@ -19,7 +20,6 @@ import {Appicon} from '../components';
 import helpers from '../constants/helpers';
 import localStorage from '../server/localStorage';
 import {changeLanguage, setLanguage} from '../I18n';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import DevelopedByKarimApps from '../components/base/DevelopedByKarimApps';
 
 const menu_items = [
@@ -42,6 +42,12 @@ const menu_items = [
     frTitle: 'Plans',
     icon: 'planning',
     route: 'plans',
+  },
+  {
+    title: 'Share App',
+    frTitle: 'Share App',
+    icon: 'share',
+    route: 'share',
   },
   {
     // title: 'Change password',
@@ -218,9 +224,35 @@ export const DrawerContent = props => {
     return menu_items.map(menu => (
       <Pressable
         android_ripple={{color: COLORS.primary}}
-        onPress={() => {
+        onPress={async () => {
           if (menu.route === 'signout') {
             trigger.signout();
+            return;
+          }
+          if (menu.route === 'share') {
+            try {
+              const title = 'Khinbo';
+              const message = `Check out this app "${title}" on ${
+                Platform.OS === 'android' ? 'Google Play Store' : 'App Store'
+              }!`;
+              const url =
+                Platform.OS === 'android'
+                  ? 'https://play.google.com/store/apps/details?id=com.Khinbo.app'
+                  : 'https://apps.apple.com/us/app/khinbo/id6445998171';
+              const options = {
+                url: url,
+                title: title,
+                message: message,
+              };
+              const result = await Share.open(options);
+              if (result.action === Share.sharedAction) {
+                console.log('App link shared successfully');
+              } else if (result.action === Share.dismissedAction) {
+                console.log('App link sharing dismissed');
+              }
+            } catch (error) {
+              console.log(error.message);
+            }
             return;
           }
           setActiveRoute(menu.route);

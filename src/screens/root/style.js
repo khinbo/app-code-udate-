@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
@@ -23,6 +23,7 @@ import {
   setSelectedSubCategory,
 } from '../../store/reducers/demand';
 import {onContentViewHandler} from '../../store/reducers/player';
+import {FlatList} from 'react-native';
 
 const headerHeight = 30;
 const itemHeight = 100;
@@ -45,6 +46,18 @@ export const StyleScreen = ({route, navigation}) => {
     refresh,
     featured,
   } = useSelector(state => state.demand);
+
+  const categoryScrollViewRef = useRef(null);
+  const subCategoryScrollViewRef = useRef(null);
+
+  const onTagPress = (index, scrollViewRef) => {
+    if (!scrollViewRef.current) return;
+    scrollViewRef.current.scrollToIndex({
+      index,
+      viewOffset: 120,
+      animated: true,
+    });
+  };
 
   // useEffect(() => {
   //   const unsubscribe = navigation.addListener('focus', () => {
@@ -84,38 +97,51 @@ export const StyleScreen = ({route, navigation}) => {
         <AppCover featured={featured} height={coverHeight} type="demands" />
 
         <View>
-          <ScrollView
+          <FlatList
+            ref={categoryScrollViewRef}
             showsHorizontalScrollIndicator={false}
             style={{
               paddingVertical: 5,
             }}
+            data={categories}
+            keyExtractor={(item, index) => `${index}`}
             horizontal
             contentContainerStyle={{
               alignItems: 'center',
               paddingLeft: 1,
-            }}>
-            {categories.map(tag => (
+            }}
+            renderItem={({item: tag, index}) => (
               <StyleTags
                 color={item.color}
                 key={tag.id}
                 selectedTag={selectedCategory}
                 item={item}
                 tag={tag}
-                onPress={() => dispatch(setSelectedCategory(tag.id))}
+                onPress={() => {
+                  dispatch(setSelectedCategory(tag.id));
+                  onTagPress(index, categoryScrollViewRef);
+                }}
               />
-            ))}
-          </ScrollView>
-          <ScrollView
+            )}
+          />
+
+          <FlatList
             style={{paddingVertical: 5}}
+            ref={subCategoryScrollViewRef}
+            keyExtractor={(item, index) => `${index}`}
             showsHorizontalScrollIndicator={false}
             horizontal
             contentContainerStyle={{
               alignItems: 'center',
               paddingLeft: 1,
-            }}>
-            {subCategories.map((tag, index) => (
+            }}
+            data={subCategories}
+            renderItem={({item: tag, index}) => (
               <AppMiniButton
-                onPress={() => dispatch(setSelectedSubCategory(tag.id))}
+                onPress={() => {
+                  dispatch(setSelectedSubCategory(tag.id));
+                  onTagPress(index, subCategoryScrollViewRef);
+                }}
                 key={tag.id}
                 marginRight={index === subCategories.length - 1 ? 0 : 5}
                 title={tag.title}
@@ -130,8 +156,8 @@ export const StyleScreen = ({route, navigation}) => {
                   color: 'white',
                 }}
               />
-            ))}
-          </ScrollView>
+            )}
+          />
         </View>
         <BaseView styles={{flex: 1}} loading={loading}>
           <AppFlatList
