@@ -21,6 +21,7 @@ export const MainStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        gestureEnabled: false,
       }}
       initialRouteName="rootTab">
       <Stack.Screen name="rootTab" component={BottomTab} />
