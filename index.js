@@ -9,6 +9,21 @@ import PushNotification, {Importance} from 'react-native-push-notification';
 import {name as appName} from './app.json';
 import localStorage from './src/server/localStorage';
 import server from './src/server';
+import appsFlyer from 'react-native-appsflyer';
+
+appsFlyer.initSdk(
+  {
+    devKey: 'Ngs6YqhosNTRjYs3bSgkj4',
+    isDebug: false,
+    appId: '6445998171',
+  },
+  result => {
+    console.log(result, '-->appsFlyer-result');
+  },
+  error => {
+    console.error(error, '-->appsFlyer-error');
+  },
+);
 
 PushNotification.configure({
   onRegister: function (token) {

@@ -17,7 +17,7 @@ import {translate} from '../../I18n';
 const custom_height = SIZES.height / 3;
 
 export const LoginScreen = ({navigation}) => {
-  const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(true);
   const inputfields = [
     {title: translate('email'), name: 'email', icon: icons.email},
     {title: translate('password'), name: 'password', icon: icons.password},

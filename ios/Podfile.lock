@@ -5,6 +5,9 @@ PODS:
   - AppAuth/Core (1.6.0)
   - AppAuth/ExternalUserAgent (1.6.0):
     - AppAuth/Core
+  - AppsFlyerFramework (6.10.1):
+    - AppsFlyerFramework/Main (= 6.10.1)
+  - AppsFlyerFramework/Main (6.10.1)
   - boost (1.76.0)
   - BVLinearGradient (2.6.2):
     - React-Core
@@ -298,6 +301,9 @@ PODS:
   - React-jsinspector (0.69.1)
   - React-logger (0.69.1):
     - glog
+  - react-native-appsflyer (6.10.3):
+    - AppsFlyerFramework (= 6.10.1)
+    - React
   - react-native-fbsdk-next (10.0.0):
     - React-Core
     - react-native-fbsdk-next/Core (= 10.0.0)
@@ -533,6 +539,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-appsflyer (from `../node_modules/react-native-appsflyer`)
   - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-cast/NoBluetooth (from `../node_modules/react-native-google-cast/`)
@@ -575,6 +582,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - AppsFlyerFramework
     - CocoaAsyncSocket
     - FBAEMKit
     - FBSDKCoreKit
@@ -655,6 +663,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-appsflyer:
+    :path: "../node_modules/react-native-appsflyer"
   react-native-fbsdk-next:
     :path: "../node_modules/react-native-fbsdk-next"
   react-native-geolocation:
@@ -734,6 +744,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
+  AppsFlyerFramework: 88a6eed37ad52bcee4ad74232efa8e22809d06c9
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   BVLinearGradient: 34a999fda29036898a09c6a6b728b0b4189e1a44
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
@@ -781,6 +792,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 758e70947c232828a66b5ddc42d02b4d010fa26e
   React-jsinspector: 55605caf04e02f9b0e05842b786f1c12dde08f4b
   React-logger: ca970551cb7eea2fd814d0d5f6fc1a471eb53b76
+  react-native-appsflyer: 153e96b97ecc0c26b14fc79911675e51cfd35b36
   react-native-fbsdk-next: 75ea1d4b48e047796f3264535a1cab502686a3e2
   react-native-geolocation: 69f4fd37650b8e7fee91816d395e62dd16f5ab8d
   react-native-google-cast: 18b9b2fc518caabfa65d309409e160b3fc6d1733

@@ -33,7 +33,7 @@ import helpers from '../../constants/helpers';
 const custom_height = SIZES.height / 3;
 
 export const SignupScreen = ({navigation}) => {
-  const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(true);
 
   const inputfields = [
     {title: translate('nameTitle'), name: 'name', icon: icons.user},
