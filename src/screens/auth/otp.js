@@ -80,7 +80,11 @@ export const OtpScreen = ({navigation, route}) => {
               marginBottom: 20,
               color: COLORS.gray,
             }}>
-            we sent your email with 6 digit code
+            Notre IA vérifie que vous n'êtes pas un robot. Nous avons envoyé un
+            code à 6 chiffres à votre adresse e-mail. Pour certaines raisons,
+            cela peut prendre jusqu'à 2-4 minutes pour afficher le code dans
+            votre boîte de réception, tandis que d'autres e-mails peuvent le
+            recevoir instantanément
           </Text>
           <AppForm
             initialValues={{
