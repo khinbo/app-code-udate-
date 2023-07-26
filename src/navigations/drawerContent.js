@@ -45,7 +45,7 @@ const menu_items = [
   },
   {
     title: 'Share App',
-    frTitle: 'Application de partage',
+    frTitle: 'Partager',
     icon: 'share',
     route: 'share',
   },

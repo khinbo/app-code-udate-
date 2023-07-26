@@ -34,7 +34,7 @@ const custom_height = SIZES.height / 3;
 
 export const SignupScreen = ({navigation}) => {
   const [isEyeOpen, setIsEyeOpen] = useState(true);
-
+  const {signup, loading} = useAuth();
   const inputfields = [
     {title: translate('nameTitle'), name: 'name', icon: icons.user},
     {title: translate('emailTitle'), name: 'email', icon: icons.email},
@@ -97,7 +97,7 @@ export const SignupScreen = ({navigation}) => {
     gender: Yup.string().required().label('Gender'),
   });
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const {getCountries, countries, initialLoading} = useAuth();
   useEffect(() => {
@@ -105,20 +105,21 @@ export const SignupScreen = ({navigation}) => {
   }, []);
 
   const onSignup = payload => {
-    setLoading(true);
-    server.sendEmailOtp({email: payload?.email}).then(resp => {
-      setLoading(false);
-      if (!resp.ok) {
-        helpers.apiResponseErrorHandler(resp);
-      } else {
-        if (resp.data && resp.data?.code) {
-          navigation.navigate('signupotp', {
-            otp: resp.data?.code,
-            payload,
-          });
-        }
-      }
-    });
+    signup(payload);
+    // setLoading(true);
+    // server.sendEmailOtp({email: payload?.email}).then(resp => {
+    //   setLoading(false);
+    //   if (!resp.ok) {
+    //     helpers.apiResponseErrorHandler(resp);
+    //   } else {
+    //     if (resp.data && resp.data?.code) {
+    //       navigation.navigate('signupotp', {
+    //         otp: resp.data?.code,
+    //         payload,
+    //       });
+    //     }
+    //   }
+    // });
   };
 
   return (
