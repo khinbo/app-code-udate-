@@ -8,6 +8,7 @@ import {
   Platform,
   Image,
   Linking,
+  Alert,
 } from 'react-native';
 
 import * as Yup from 'yup';
@@ -100,12 +101,20 @@ export const SignupScreen = ({navigation}) => {
   // const [loading, setLoading] = useState(false);
 
   const {getCountries, countries, initialLoading} = useAuth();
+
   useEffect(() => {
     getCountries();
   }, []);
 
   const onSignup = payload => {
-    signup(payload);
+    Alert.alert(
+      "Confirmation de l'adresse e-mail",
+      'Pour une sécurité et une confidentialité optimales de votre compte khinbo, veuillez confirmer votre adresse e-mail. Cette étape vous permettra de réinitialiser vos mots de passe et de protéger la gestion de votre compte.',
+      [
+        {text: 'Annuler', onPress: () => console.log('Annuler Pressed')},
+        {text: 'Confirmer', onPress: () => signup(payload)},
+      ],
+    );
     // setLoading(true);
     // server.sendEmailOtp({email: payload?.email}).then(resp => {
     //   setLoading(false);
