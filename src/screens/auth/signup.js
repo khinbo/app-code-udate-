@@ -40,6 +40,12 @@ export const SignupScreen = ({navigation}) => {
     {title: translate('nameTitle'), name: 'name', icon: icons.user},
     {title: translate('emailTitle'), name: 'email', icon: icons.email},
     {
+      title: translate('emailConfirmationTitle'),
+      name: 'email_confirmation',
+      icon: icons.email,
+    },
+
+    {
       title: translate('passwordTitle'),
       name: 'password',
       icon: icons.password,
@@ -83,6 +89,9 @@ export const SignupScreen = ({navigation}) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required().label('Name'),
     email: Yup.string().required().email().label('Email'),
+    email_confirmation: Yup.string()
+      .required(translate('emailConfirmValidation'))
+      .oneOf([Yup.ref('email'), null], translate('emailMustMatched')),
     password: Yup.string()
       .required()
       .matches(
@@ -205,6 +214,7 @@ export const SignupScreen = ({navigation}) => {
               initialValues={{
                 name: '',
                 email: '',
+                email_confirmation: '',
                 password: '',
                 password_confirmation: '',
                 dob: new Date(2000, 10, 20),
