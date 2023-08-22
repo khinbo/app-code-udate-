@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>168932392247-obmnj3pmabg392dujm6ps13m85diddun.apps.googleusercontent.com</string>
+	<string>340401308963-05u6kaiunlli6t78mmv8qsmbuketr01d.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.168932392247-obmnj3pmabg392dujm6ps13m85diddun</string>
+	<string>com.googleusercontent.apps.340401308963-05u6kaiunlli6t78mmv8qsmbuketr01d</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>168932392247-lciueua5kdv90u9eu8bbc5g37eu3q4nu.apps.googleusercontent.com</string>
+	<string>340401308963-hqkg12vfa0dqenapf1s7902vgoril3i0.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA7qoOJ-T_Sy3wXgYLH40VL9Tf3sRWa3Yk</string>
+	<string>AIzaSyBMpSdq6LBmMpejWRa4SqMd3s_10KamsGU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>168932392247</string>
+	<string>340401308963</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.Khinbo.app</string>
+	<string>com.karimapps.Khinbo.app</string>
 	<key>PROJECT_ID</key>
-	<string>khinbo-ce2ff</string>
+	<string>my-app-d08a4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>khinbo-ce2ff.appspot.com</string>
+	<string>my-app-d08a4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:168932392247:ios:d721c9817e156042072eb2</string>
+	<string>1:340401308963:ios:7141d40aeac7afb04af896</string>
 </dict>
 </plist>

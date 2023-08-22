@@ -1,26 +1,43 @@
 {
   "project_info": {
-    "project_number": "537577016244",
-    "project_id": "khinbo-74871",
-    "storage_bucket": "khinbo-74871.appspot.com"
+    "project_number": "340401308963",
+    "project_id": "my-app-d08a4",
+    "storage_bucket": "my-app-d08a4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:537577016244:android:b75b5a52cb7c56d80fc0e1",
+        "mobilesdk_app_id": "1:340401308963:android:b4767c8d8617e9b54af896",
         "android_client_info": {
           "package_name": "com.Khinbo.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "340401308963-0vbvsk51a0pn5amrmntkatd2n1de8dg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQ8bG2dXZGczJo8iD1ODYFd7xoov0osA4"
+          "current_key": "AIzaSyBflgInlNZjrNFf2ofjCe9KGLu4funjkuE"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340401308963-0vbvsk51a0pn5amrmntkatd2n1de8dg9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340401308963-05u6kaiunlli6t78mmv8qsmbuketr01d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.karimapps.Khinbo.app"
+              }
+            }
+          ]
         }
       }
     }

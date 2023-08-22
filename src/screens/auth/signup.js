@@ -35,7 +35,7 @@ const custom_height = SIZES.height / 3;
 
 export const SignupScreen = ({navigation}) => {
   const [isEyeOpen, setIsEyeOpen] = useState(true);
-  const {signup, loading} = useAuth();
+  // const {signup, loading} = useAuth();
   const inputfields = [
     {title: translate('nameTitle'), name: 'name', icon: icons.user},
     {title: translate('emailTitle'), name: 'email', icon: icons.email},
@@ -107,7 +107,7 @@ export const SignupScreen = ({navigation}) => {
     gender: Yup.string().required().label('Gender'),
   });
 
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {getCountries, countries, initialLoading} = useAuth();
 
@@ -121,23 +121,27 @@ export const SignupScreen = ({navigation}) => {
       'Pour une sécurité et une confidentialité optimales de votre compte khinbo, veuillez confirmer votre adresse e-mail. Cette étape vous permettra de réinitialiser vos mots de passe et de protéger la gestion de votre compte.',
       [
         {text: 'Annuler', onPress: () => console.log('Annuler Pressed')},
-        {text: 'Confirmer', onPress: () => signup(payload)},
+        {
+          text: 'Confirmer',
+          onPress: () => {
+            setLoading(true);
+            server.sendEmailOtp({email: payload?.email}).then(resp => {
+              setLoading(false);
+              if (!resp.ok) {
+                helpers.apiResponseErrorHandler(resp);
+              } else {
+                if (resp.data && resp.data?.code) {
+                  navigation.navigate('signupotp', {
+                    otp: resp.data?.code,
+                    payload,
+                  });
+                }
+              }
+            });
+          },
+        },
       ],
     );
-    // setLoading(true);
-    // server.sendEmailOtp({email: payload?.email}).then(resp => {
-    //   setLoading(false);
-    //   if (!resp.ok) {
-    //     helpers.apiResponseErrorHandler(resp);
-    //   } else {
-    //     if (resp.data && resp.data?.code) {
-    //       navigation.navigate('signupotp', {
-    //         otp: resp.data?.code,
-    //         payload,
-    //       });
-    //     }
-    //   }
-    // });
   };
 
   return (

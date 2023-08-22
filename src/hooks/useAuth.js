@@ -1,6 +1,8 @@
 /* eslint-disable curly */
-import {useCallback, useContext, useEffect, useState} from 'react';
-import {Keyboard, Platform} from 'react-native';
+import {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import {Alert, AppState, Keyboard, Platform} from 'react-native';
+import messaging from '@react-native-firebase/messaging';
+import notifee, {AuthorizationStatus} from '@notifee/react-native';
 import {appleAuth} from '@invertase/react-native-apple-authentication';
 import jwt_decode from 'jwt-decode';
 import {
@@ -28,10 +30,58 @@ const useAuth = () => {
   const [initialLoading, setInitialLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState([]);
+  const [pushToken, setPushToken] = useState(null);
+  const appState = useRef(AppState.currentState);
+
+  const getDeviceToken = useCallback(async () => {
+    const settings = await notifee.requestPermission();
+    if (settings.authorizationStatus === AuthorizationStatus.DENIED) {
+      Alert.alert(
+        'Notification Permission Required',
+        'Please allow notifications to receive important notificationss.',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'Open Settings', onPress: notifee.openNotificationSettings},
+        ],
+        {cancelable: true},
+      );
+      return null;
+    }
+
+    await messaging().registerDeviceForRemoteMessages();
+    const token = await messaging().getToken();
+    setPushToken(token);
+  }, []);
+
+  useEffect(() => {
+    getDeviceToken();
+  }, []);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        getDeviceToken();
+      }
+
+      appState.current = nextAppState;
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     GoogleSignin.configure({});
   }, []);
+  console.log(pushToken, '--->pushToken');
 
   const getCountries = useCallback(() => {
     setInitialLoading(true);
@@ -46,35 +96,38 @@ const useAuth = () => {
     values => {
       Keyboard.dismiss();
       setLoading(true);
-      server.signin(values).then(resp => {
-        localStorage.getPushToken().then(token => {
-          server.updateToken({push_token: token});
+      server
+        .signin({
+          ...values,
+          push_token: pushToken,
+        })
+        .then(async resp => {
+          setLoading(false);
+          if (!resp.ok) {
+            if (resp.data?.message === 'pending') {
+              localStorage.saveToken(resp.data?.access_token).then(() => {
+                if (resp.data.type === 'profile') {
+                  navigation.navigate('verified', {
+                    user: resp.data.user,
+                  });
+                } else {
+                  navigation.navigate('interests');
+                }
+              });
+            } else helpers.apiResponseErrorHandler(resp);
+          } else updateUser(resp.data.access_token, resp.data.user);
         });
-        setLoading(false);
-        if (!resp.ok) {
-          if (resp.data?.message === 'pending') {
-            localStorage.saveToken(resp.data?.access_token).then(() => {
-              if (resp.data.type === 'profile') {
-                navigation.navigate('verified', {
-                  user: resp.data.user,
-                });
-              } else {
-                navigation.navigate('interests');
-              }
-            });
-          } else helpers.apiResponseErrorHandler(resp);
-        } else updateUser(resp.data.access_token, resp.data.user);
-      });
     },
-    [navigation, updateUser],
+    [navigation, updateUser, pushToken],
   );
 
   const signup = useCallback(
-    values => {
+    async values => {
       Keyboard.dismiss();
       const payload = {
         ...values,
         dob: moment(values.dob).format('YYYY-MM-DD'),
+        push_token: pushToken,
       };
       setLoading(true);
       server.signup(payload).then(resp => {
@@ -94,7 +147,7 @@ const useAuth = () => {
         } else updateUser(resp.data.access_token, resp.data.user);
       });
     },
-    [navigation, updateUser],
+    [navigation, updateUser, pushToken],
   );
 
   const completeProfile = useCallback(

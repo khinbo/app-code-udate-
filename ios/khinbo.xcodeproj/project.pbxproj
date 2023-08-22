@@ -17,8 +17,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		92B06B65ECA62EAC5FCB6D5B /* Pods_Khinbo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D843206B27BB466E1D9B57 /* Pods_Khinbo.framework */; };
 		982C5FA82888297C009B2E88 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C5FA72888297C009B2E88 /* File.swift */; };
-		9882949A28882479005A862E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9882949928882479005A862E /* GoogleService-Info.plist */; };
 		98A023D82A072FCA00920276 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A023D72A072FCA00920276 /* StoreKit.framework */; };
+		98E70ADF2A93D598003241BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98E70ADE2A93D598003241BB /* GoogleService-Info.plist */; };
 		BB11A5837D044581B764D291 /* Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6153B1DCC4F40FB95761601 /* Light.ttf */; };
 		E17EFF4840F44E2C94484206 /* Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60094D958C144E8ABD2EA26C /* Regular.ttf */; };
 /* End PBXBuildFile section */
@@ -53,9 +53,10 @@
 		982C5FA72888297C009B2E88 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		982C5FA928882B6D009B2E88 /* Khinbo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Khinbo.entitlements; path = Khinbo/Khinbo.entitlements; sourceTree = "<group>"; };
 		984A87EE29B124D7002472A5 /* KhinboRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = KhinboRelease.entitlements; path = Khinbo/KhinboRelease.entitlements; sourceTree = "<group>"; };
-		9882949928882479005A862E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9882A9182A07568900D7A310 /* mainConfigration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = mainConfigration.storekit; sourceTree = "<group>"; };
 		98A023D72A072FCA00920276 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		98E70ADD2A93D2D9003241BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		98E70ADE2A93D598003241BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F4B11216AA05AFA5F9EC7D9 /* Pods-Khinbo-KhinboTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khinbo-KhinboTests.release.xcconfig"; path = "Target Support Files/Pods-Khinbo-KhinboTests/Pods-Khinbo-KhinboTests.release.xcconfig"; sourceTree = "<group>"; };
 		A7F148DFF17A4BED8B244CDB /* Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Bold.ttf; path = ../assets/fonts/Bold.ttf; sourceTree = "<group>"; };
 		AC2026C42A9995D21E4B7923 /* Pods_Khinbo_KhinboTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Khinbo_KhinboTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +106,7 @@
 		13B07FAE1A68108700A75B9A /* Khinbo */ = {
 			isa = PBXGroup;
 			children = (
+				98E70ADE2A93D598003241BB /* GoogleService-Info.plist */,
 				984A87EE29B124D7002472A5 /* KhinboRelease.entitlements */,
 				982C5FA928882B6D009B2E88 /* Khinbo.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -140,8 +142,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				98E70ADD2A93D2D9003241BB /* GoogleService-Info.plist */,
 				9882A9182A07568900D7A310 /* mainConfigration.storekit */,
-				9882949928882479005A862E /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* Khinbo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* KhinboTests */,
@@ -250,7 +252,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Khinbo" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "khinbo" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -287,7 +289,7 @@
 				BB11A5837D044581B764D291 /* Light.ttf in Resources */,
 				E17EFF4840F44E2C94484206 /* Regular.ttf in Resources */,
 				24C6A8789D784CDDAA92E590 /* SemiBold.ttf in Resources */,
-				9882949A28882479005A862E /* GoogleService-Info.plist in Resources */,
+				98E70ADF2A93D598003241BB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +550,7 @@
 				CODE_SIGN_ENTITLEMENTS = Khinbo/Khinbo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = N239SQ2UD9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Khinbo/Info.plist;
@@ -557,13 +559,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8;
+				MARKETING_VERSION = 4.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Khinbo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.karimapps.Khinbo.app;
 				PRODUCT_NAME = Khinbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Khinbo-Bridging-Header.h";
@@ -581,18 +583,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Khinbo/KhinboRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = N239SQ2UD9;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 38;
+				DEVELOPMENT_TEAM = N239SQ2UD9;
 				INFOPLIST_FILE = Khinbo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Khinbo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8;
+				MARKETING_VERSION = 4.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -601,7 +601,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.karimapps.Khinbo.app;
 				PRODUCT_NAME = Khinbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "khinbo new";
 				SWIFT_OBJC_BRIDGING_HEADER = "Khinbo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -766,7 +765,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Khinbo" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "khinbo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

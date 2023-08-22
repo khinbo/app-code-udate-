@@ -3,6 +3,8 @@ import 'react-native-reanimated';
 import React, {useState, useMemo, useEffect, useCallback} from 'react';
 import {View, StatusBar, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import messaging from '@react-native-firebase/messaging';
+import notifee, {AndroidImportance} from '@notifee/react-native';
 import {Provider} from 'react-redux';
 import Toast from 'react-native-easy-toast';
 import {AuthStack, DrawerNavigator} from './src/navigations';
@@ -16,12 +18,39 @@ import {changeLanguage} from './src/I18n';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import Orientation from 'react-native-orientation-locker';
 
+const onNotificationReceived = message => {
+  const {userId, notification_type, title, body} = message.data;
+  notifee.displayNotification({
+    title,
+    body,
+    android: {
+      channelId: 'khinbo',
+    },
+  });
+};
+
+messaging().onMessage(onNotificationReceived);
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [isSplashEnd, setIsSplashEnd] = useState(false);
   const [firstVisit, setFirstVisit] = useState(null);
   const [publishableKey, setPublishableKey] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    createNotificationChannels();
+  }, []);
+
+  async function createNotificationChannels() {
+    const channelId = await notifee.createChannel({
+      id: 'khinbo',
+      name: 'khinbo Notifications',
+      description: 'Receive updates and alerts from khinbo',
+      importance: AndroidImportance.HIGH,
+    });
+    console.log('Notification channel created with ID:', channelId);
+  }
 
   useEffect(() => {
     Orientation.lockToPortrait();

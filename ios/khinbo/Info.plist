@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.168932392247-obmnj3pmabg392dujm6ps13m85diddun</string>
+				<string>com.googleusercontent.apps.340401308963-05u6kaiunlli6t78mmv8qsmbuketr01d</string>
 			</array>
 		</dict>
 		<dict>
@@ -75,17 +75,17 @@
 	</dict>
 	<key>NSBonjourServices</key>
 	<array>
-	<string>_googlecast._tcp</string>
-	<string>_CC1AD845._googlecast._tcp</string>
+		<string>_googlecast._tcp</string>
+		<string>_CC1AD845._googlecast._tcp</string>
 	</array>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi network.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>khinbo requires access to your phone’s camera.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is required to find out cinemas near by you.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi network.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app needs to access your location to find cinemas near you, even when the app is in the background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is required to find out cinemas near by you.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bold.ttf</string>

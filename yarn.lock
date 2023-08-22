@@ -1223,6 +1223,11 @@
     hey-listen "^1.0.8"
     tslib "^2.3.1"
 
+"@notifee/react-native@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.8.0.tgz#2990883753990f3585aa0cb5becc5cbdbcd87a43"
+  integrity sha512-sx8h62U4FrR4pqlbN1rkgPsdamDt9Tad0zgfO6VtP6rNJq/78k8nxUnh0xIX3WPDcCV8KAzdYCE7+UNvhF1CpQ==
+
 "@react-native-async-storage/async-storage@^1.17.7":
   version "1.17.7"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.17.7.tgz#f9213e8cc6202a8c29df5a4da1db588f3b0fa8a9"
@@ -1460,6 +1465,11 @@
     "@expo/config-plugins" "^4.1.5"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
+
+"@react-native-firebase/messaging@15.1.1":
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-15.1.1.tgz#3079ddc8aaba1a758495ee16d460653f5701e74e"
+  integrity sha512-oWN4/919U44jJQDKVd5+OIviIZ6jTZkMOVVvCLwtMh9WXI0tCd/E+be8zOjH3jHi6M0Zkf0IOXOd0QuwyrmQZw==
 
 "@react-native-google-signin/google-signin@^8.0.0":
   version "8.0.0"
